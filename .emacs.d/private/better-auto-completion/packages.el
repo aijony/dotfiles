@@ -44,11 +44,7 @@
 )
     (use-package company-ycmd
       :post-init
-      ;;Set company behavior
-      (let ((map company-active-map))
-        (define-key map (kbd "<tab>") 'company-complete-selection)
-        (define-key map (kbd "RET") 'nil)
-        )
+      
       )
     (use-package flycheck-ycmd
          :post-init
