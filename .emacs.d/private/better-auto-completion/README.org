@@ -41,7 +41,7 @@ To use this contribution add it to your =~/.spacemacs=
 #+end_src
 
 * Usage
-You complete me should automatically work out of the box. A feature that has been included is [[YCM-Generator][https://github.com/rdnetto/YCM-Generato]]
+You complete me should automatically work out of the box. A feature that has been included is [[https://github.com/rdnetto/YCM-Generator][YCM-Generator]]
 
 To use this feature have a supported (see YCM-Generator link) build system configured in the projectile root directory and a folder called build as well in the projectile root directory
 Then call the method =ycmd-generate= 
