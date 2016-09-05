@@ -292,7 +292,23 @@ you should place your code here."
 
   ;;Set a quick double keystroke to escape
   (setq evil-escape-key-sequence "kj")
+  ;;Set company behavior
+  (let ((map company-active-map))
+    (define-key map (kbd "<tab>") 'company-complete-selection)
+    (define-key map (kbd "RET") 'nil)
+    )
 
+
+
+  ;;Thanks to git hub user Paulo Costa @pcesar22 All calls to
+  ;;perl-mode now use cperl-mode
+  (defalias 'perl-mode 'cperl-mode)
+  ;;Cperl mode hook enables company auto complete and fixes issue
+  ;;with cperl-electric and smart-parens
+  (add-hook 'cperl-mode-hook
+            #'company-mode
+            (lambda () (local-unset-key (kbd "{")))
+            )
   )
 
 ;; Do not write anything past this comment. This is where Emacs will
