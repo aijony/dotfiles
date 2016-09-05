@@ -12,7 +12,7 @@
 * Description
 
 A layer designed to be paired with the [spacemacs ycmd setup script](https://github.com/aijony/dotfiles/tree/master/.scripts/ycmd)
-Because [ycmd](https://github.com/Valloric/ycmd) is confusing to setup, though it is a beautiful compilation of auto-completion engines.
+Because [https://github.com/Valloric/ycmd][ycmd] is confusing to setup, though it is a beautiful compilation of auto-completion engines.
 
 * Install
 
