@@ -25,7 +25,7 @@
 ;;Auto-Completion
 
 (set-variable 'ycmd-server-command '("python" "~/.ycmd/ycmd/ycmd"))
-(set-variable 'ycmd-extra-conf-whitelist '("~/doecuments/projects/*"))
+(set-variable 'ycmd-extra-conf-whitelist '("~/*"))
 
 (setq ycmd-generate-command '"~/.ycmd/YCM-Generator/config_gen.py")
 
