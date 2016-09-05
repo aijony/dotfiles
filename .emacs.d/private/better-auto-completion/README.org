@@ -11,7 +11,7 @@
 
 * Description
 
-A layer designed to be paired with the [spacemacs ycmd setup script](https://github.com/aijony/dotfiles/tree/master/.scripts/ycmd)
+A layer designed to be paired with the [[https://github.com/aijony/dotfiles/tree/master/.scripts/ycmd][spacemacs ycmd setup script]]
 Because [[https://github.com/Valloric/ycmd][ycmd]] is confusing to setup, though it is a beautiful compilation of auto-completion engines.
 
 * Install
@@ -23,7 +23,7 @@ python
 cmake
 spacemacs
 
-To install this script please run my [spacemacs ycmd setup script](https://github.com/aijony/dotfiles/tree/master/.scripts/ycmd)
+To install this script please run my [[https://github.com/aijony/dotfiles/tree/master/.scripts/ycmd][spacemacs ycmd setup script]]
 
 
 To use this contribution add it to your =~/.spacemacs=
@@ -41,7 +41,7 @@ To use this contribution add it to your =~/.spacemacs=
 #+end_src
 
 * Usage
-You complete me should automatically work out of the box. A feature that has been included is [YCM-Generator](https://github.com/rdnetto/YCM-Generato)
+You complete me should automatically work out of the box. A feature that has been included is [YCM-Generator][https://github.com/rdnetto/YCM-Generato]
 
 To use this feature have a supported (see YCM-Generator link) build system configured in the projectile root directory and a folder called build as well in the projectile root directory
 Then call the method =ycmd-generate= 
