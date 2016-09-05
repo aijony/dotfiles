@@ -24,7 +24,7 @@
 
 ;;Auto-Completion
 
-(set-variable 'ycmd-server-command '("python" "/usr/bin/ycmd/ycmd"))
+(set-variable 'ycmd-server-command '("python" "~/.ycmd/ycmd/ycmd"))
 (set-variable 'ycmd-global-config "~/ycmd/.ycm_extra_conf.py")
 (set-variable 'ycmd-extra-conf-whitelist '("~/doecuments/projects/*"))
 
