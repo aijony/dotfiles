@@ -24,8 +24,7 @@
 
 ;;Auto-Completion
 
-(set-variable 'ycmd-server-command '("python" "~/.ycmd/ycmd/ycmd"))
-(set-variable 'ycmd-extra-conf-whitelist '("~/*"))
-
+(set-variable 'ycmd-server-command '("python" "/usr/bin/ycmd/ycmd"))
+(set-variable 'ycmd-extra-conf-handler 'load)
 (setq ycmd-generate-command '"~/.ycmd/YCM-Generator/config_gen.py")
 
