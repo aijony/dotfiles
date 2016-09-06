@@ -26,6 +26,8 @@ values."
      ;;Generic
      auto-completion
      better-defaults
+     cscope
+     gtags
      org
      (shell :variables shell-default-height 30 shell-default-position 'bottom)
      semantic
@@ -34,14 +36,14 @@ values."
      syntax-checking
      themes-megapack
      theming
+     
+     ;;Frameworks
+     ruby-on-rails
 
      ;;Useless
-     emoji
-     games
      selectric
-     xkcd
+
      ;;Languages
-     ;;( c-c++ :variables c-c++-enable-clang-support t)
      c-c++
      csharp
      emacs-lisp
