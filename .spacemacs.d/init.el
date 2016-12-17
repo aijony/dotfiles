@@ -355,7 +355,6 @@ you should place your code here."
     )
 
 
-  (require 'ox-extra)
   (ox-extras-activate '(ignore-headlines))
 
   (setq evil-escape-key-sequence "kj")
