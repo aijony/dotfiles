@@ -27,21 +27,14 @@
 ;;   define the functions `ox-extra/pre-init-PACKAGE' and/or
 ;;   `ox-extra/post-init-PACKAGE' to customize the package as it is loaded.
 
-;;; Code:
 
- (defvar ox-extra-pre-extensions
-    '(
-      ;; pre extension ox-extras go here
-      ox-extra
-      )
+(defconst ox-extra-packages
+  '(
+    (ox-extra :location local)
     )
+  )
 
-  (defvar ox-extra-post-extensions
-    '(
-      
-      )
-    )
-  ;; For each extension, define a function ox-extra/init-<extension-ox-extra>
+ ;; For each extension, define a function ox-extra/init-<extension-ox-extra>
   ;;
   (defun ox-extra/init-ox-extra ()
     (use-package ox-extra

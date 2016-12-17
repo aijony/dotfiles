@@ -32,7 +32,7 @@
  (defvar lilypond-mode-pre-extensions
     '(
       ;; pre extension lilypond-modes go here
-      lilypond-mode 
+      lilypond-mode
       )
     )
 
