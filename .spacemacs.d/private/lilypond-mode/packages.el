@@ -40,6 +40,8 @@
   ;;
 (defun lilypond-mode/init-lilypond-mode ()
     (use-package lilypond-mode
+      :config
+      (add-to-list 'auto-mode-alist '("\\.ly\\'" . LilyPond-mode))
       )
 )
 ;;; packages.el ends here
