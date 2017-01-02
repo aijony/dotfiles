@@ -19,7 +19,7 @@ git submodule update --init --recursive
 
 ./build.py --all
 
-cd ~/.emacs.d
+cd ~/.spacemacs.d
 
 mkdir private
 
