@@ -40,8 +40,8 @@
 (defun writing/init-synonyms ()
   (use-package synonyms
   :init
-  (setq synonyms-file ".emacs.d/private/resources/mthesaur.txt")
-  (setq synonyms-cache-file ".emacs.d/private/resources/mthesaur.txt.cache")
+  (setq synonyms-file ".spacemacs.d/private/resources/mthesaur.txt")
+  (setq synonyms-cache-file ".spacemacs.d/private/resources/mthesaur.txt.cache")
   )
   )
 
