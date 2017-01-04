@@ -360,6 +360,9 @@ you should place your code here."
 
   (ox-extras-activate '(ignore-headlines))
 
+  ;;Hides python error message occurring in org snippets
+  (setq python-shell-prompt-detect-failure-warning nil)
+
   (setq evil-escape-key-sequence "kj")
 
   (setq flycheck-check-syntax-automatically '(mode-enabled new-line))
