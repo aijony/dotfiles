@@ -363,7 +363,13 @@ you should place your code here."
     (define-key map (kbd "RET") 'nil)
     )
 
-  (semantic :disabled-for emacs-lisp)
+
+  (eval-after-load 'semantic
+    (add-hook 'semantic-mode-hook
+              (lambda ()
+                (dolist (x (default-value 'completion-at-point-functions))
+                  (when (string-prefix-p "semantic-" (symbol-name x))
+                    (remove-hook 'completion-at-point-functions x))))))
 
   (setq flycheck-check-syntax-automatically '(mode-enabled new-line)
 
@@ -390,11 +396,6 @@ you should place your code here."
            (insert filename))))
 
   (evil-leader/set-key "f i" 'my-insert-file-name)
-
-
-  (ox-extras-activate '(ignore-headlines))
-
-
 
   (setq powerline-default-separator 'arrow)
   (setq-default dotspacemacs-line-numbers 'relative)

@@ -40,7 +40,6 @@
     (use-package ox-extra
       :config
       (ox-extras-activate '(ignore-headlines))
-      (setq evil-escape-key-sequence "kj")
       )
 )
 ;;; packages.el ends here
