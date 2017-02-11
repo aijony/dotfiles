@@ -36,7 +36,7 @@
     (ycmd)))
 
 
-  
+
   (defun better-auto-completion/init-better-auto-completion ()
     (use-package ycmd
       :post-init
@@ -45,7 +45,13 @@
 )
     (use-package company-ycmd
       :post-init
-      
+      ;;Set company behavior
+      (let ((map company-active-map))
+        (define-key map (kbd "<tab>") 'company-complete-selection)
+        (define-key map (kbd "RET") 'nil)
+        )
+
+
       )
     (use-package flycheck-ycmd
          :post-init

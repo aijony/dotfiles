@@ -352,7 +352,6 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
-  ;;Set a quick double keystroke to escape
 
 
   (load-theme 'aidan-dark)
@@ -363,7 +362,10 @@ you should place your code here."
 
   (setq evil-escape-key-sequence "kj")
 
+  (setq org-tags-column 0)
 
+  ;;Prevent parsing hold-u
+  (semantic :disabled-for emacs-lisp)
 
   (defun eshell/clear ()
     "Clear the eshell buffer."
@@ -373,7 +375,6 @@ you should place your code here."
 
 
 
-  )
   )
 
 
