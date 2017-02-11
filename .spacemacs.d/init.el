@@ -88,11 +88,11 @@ values."
      ;;Window Managment
      spacemacs-layouts
      ;;Custom
-     ox-extra
      writing
      lilypond-mode
      better-auto-completion
 
+     orxtended
      (org :variables
           org-enable-reveal-js-support t)
 

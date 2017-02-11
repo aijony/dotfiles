@@ -18,28 +18,28 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `ox-extra-packages'. Then, for each package PACKAGE:
+;; added to `orxtended-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `ox-extra/init-PACKAGE' to load and initialize the package.
+;;   function `orxtended/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `ox-extra/pre-init-PACKAGE' and/or
-;;   `ox-extra/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `orxtended/pre-init-PACKAGE' and/or
+;;   `orxtended/post-init-PACKAGE' to customize the package as it is loaded.
 
 
-(defconst ox-extra-packages
+(defconst orxtended-packages
   '(
     (ox-extra :location local)
     )
   )
 
- ;; For each extension, define a function ox-extra/init-<extension-ox-extra>
+ ;; For each extension, define a function orxtended/init-<extension-orxtended>
   ;;
-  (defun ox-extra/init-ox-extra ()
+  (defun orxtended/init-orxtended ()
     (use-package ox-extra
       :config
-      (ox-extras-activate '(ignore-headlines))
+      (ox-extra-activate '(ignore-headlines))
       )
 )
 ;;; packages.el ends here
