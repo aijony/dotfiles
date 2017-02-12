@@ -11,13 +11,13 @@ git clone https://github.com/rdnetto/YCM-Generator
 
 cd /usr/bin
 
-git clone https://github.com/Valloric/ycmd
+sudo git clone https://github.com/Valloric/ycmd
 
 cd ycmd
 
-git submodule update --init --recursive
+sudo git submodule update --init --recursive
 
-./build.py --all
+sudo ./build.py --all
 
 cd ~/.spacemacs.d
 
