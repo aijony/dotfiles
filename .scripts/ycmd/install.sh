@@ -9,9 +9,7 @@ cd .ycmd
 
 git clone https://github.com/rdnetto/YCM-Generator
 
-cd /usr/bin
-
-sudo git clone https://github.com/Valloric/ycmd
+git clone https://github.com/Valloric/ycmd
 
 cd ycmd
 
