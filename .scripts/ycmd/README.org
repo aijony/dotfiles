@@ -11,7 +11,7 @@
 
 * Description
 
-A layer designed to be paired with the [[https://github.com/aijony/dotfiles/tree/master/.emacs.d/private/better-auto-completion][spacemacs ycmd setup layer]]
+A layer designed to be paired with the [[https://github.com/aijony/dotfiles/tree/master/.spacemacs.d/private/better-auto-completion][spacemacs ycmd setup layer]]
 Because [[https://github.com/Valloric/ycmd][ycmd]] is confusing to setup, though it is a beautiful compilation of auto-completion engines.
 
 * Install
