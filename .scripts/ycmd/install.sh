@@ -13,7 +13,7 @@ git clone https://github.com/Valloric/ycmd
 
 cd ycmd
 
-sudo git submodule update --init --recursive
+git submodule update --init --recursive
 
 sudo ./build.py --all
 
