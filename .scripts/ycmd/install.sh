@@ -25,4 +25,4 @@ mkdir private
 
 cd private
 
-svn checkout https://github.com/aijony/dotfiles/trunk/.emacs.d/private/better-auto-completion
+svn checkout https://github.com/aijony/dotfiles/trunk/.spacemacs.d/private/better-auto-completion
