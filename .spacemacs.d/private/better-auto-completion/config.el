@@ -42,8 +42,16 @@
 (setq-default helm-make-build-dir build-dir)
 
 ;;Auto-Completion
+(setq ycmd-dir (file-truename '"~/.ycmd/ycmd/ycmd/"))
+(setq word-python "python")
 
-(set-variable 'ycmd-server-command '("python" "~/.ycmd/ycmd"))
+(defun my-eval-string (string)
+  (car (read-from-string string)))
+
+(setq to-command (my-eval-string (concat "(\""word-python "\" \"" ycmd-dir "\")")))
+
+(set-variable 'ycmd-server-command to-command)
+
 (set-variable 'ycmd-extra-conf-handler 'load)
 (setq ycmd-generate-command '"~/.ycmd/YCM-Generator/config_gen.py")
 
