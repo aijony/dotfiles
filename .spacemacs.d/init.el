@@ -92,10 +92,9 @@ values."
      lilypond-mode
      better-auto-completion
 
-     orxtended
      (org :variables
           org-enable-reveal-js-support t)
-
+     orxtended
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -366,6 +365,7 @@ you should place your code here."
 
   ;;Prevent parsing hold-u
   (semantic :disabled-for emacs-lisp)
+
 
   (defun eshell/clear ()
     "Clear the eshell buffer."

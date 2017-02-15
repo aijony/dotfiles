@@ -28,7 +28,7 @@
 ;;   `orxtended/post-init-PACKAGE' to customize the package as it is loaded.
 
 
-(defconst orxtended-packages
+(setq orxtended-packages
   '(
     (ox-extra :location local)
     )
@@ -36,10 +36,10 @@
 
  ;; For each extension, define a function orxtended/init-<extension-orxtended>
   ;;
-  (defun orxtended/init-orxtended ()
+  (defun orxtended/init-ox-extra ()
     (use-package ox-extra
       :config
-      (ox-extra-activate '(ignore-headlines))
+      (ox-extras-activate '(ignore-headlines))
       )
 )
 ;;; packages.el ends here
