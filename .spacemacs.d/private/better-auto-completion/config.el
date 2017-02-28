@@ -13,10 +13,6 @@
 
 ;;Build directory settings
 
-
-
-
-
 (setq flycheck-check-syntax-automatically '(mode-enabled new-line))
 
 
@@ -29,6 +25,10 @@
           #'company-mode
           (lambda () (local-unset-key (kbd "{")))
           )
+
+;; Haskell
+(setenv "PATH" (concat (file-truename "~/.local/bin:") (getenv "PATH")))
+(add-to-list 'exec-path "~/.local/bin/")
 
 
 
@@ -56,4 +56,14 @@
 (setq ycmd-generate-command '"~/.ycmd/YCM-Generator/config_gen.py")
 
 (evil-leader/set-key "f i" 'my-insert-file-name)
+
+;; YCMD ENDS
+
+;;Prevent parsing hold-u
+(eval-after-load 'semantic
+  (add-hook 'semantic-mode-hook
+            (lambda ()
+              (dolist (x (default-value 'completion-at-point-functions))
+                (when (string-prefix-p "semantic-" (symbol-name x))
+                  (remove-hook 'completion-at-point-functions x))))))
 
