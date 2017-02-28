@@ -368,7 +368,6 @@ you should place your code here."
   (setq evil-escape-key-sequence "kj")
   (global-linum-mode)
 
-  (setq org-tags-column 0)
   (defun eshell/clear ()
     "Clear the eshell buffer."
     (let ((inhibit-read-only t))
