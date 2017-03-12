@@ -2,6 +2,6 @@
 	path = .spacemacs.d/private/resources/reveal-js
 	url = https://github.com/hakimel/reveal.js.git
 
-[submodule "/home/aidan/.spacemacs.d/private/lilypond-mode/extensions"]
-	path = /home/aidan/.spacemacs.d/private/lilypond-mode/extensions
+[submodule "/home/aidan/.spacemacs.d/layers/lilypond-mode/extensions"]
+	path = /home/aidan/.spacemacs.d/layers/lilypond-mode/extensions
 	url = https://github.com/jstamant/lilypond-mode.git
