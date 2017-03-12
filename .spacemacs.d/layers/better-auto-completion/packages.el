@@ -30,36 +30,25 @@
 ;;; Code:
 
 
-  (setq better-auto-completion-packages'(
-    (auto-completion) 
-    (syntax-checking) 
-    (ycmd)))
+(setq better-auto-completion-packages '())
 
 
 
-  (defun better-auto-completion/init-better-auto-completion ()
-    (use-package ycmd
-      :post-init
-      (add-hook 'after-init-hook #'global-ycmd-mode)
-      (add-hook 'c++-mode-hook 'ycmd-mode)
-)
-    (use-package company-ycmd
-      :post-init
-      ;;Set company behavior
-      (let ((map company-active-map))
-        (define-key map (kbd "<tab>") 'company-complete-selection)
-        (define-key map (kbd "RET") 'nil)
-        )
 
 
-      )
-    (use-package flycheck-ycmd
-         :post-init
-         ;;Help artifacts when using terminal mode
-         (when (not (display-graphic-p))
-           (setq flycheck-indication-mode nil))
-   )
-    )
+(defun better-auto-completion-packages/post-init-auto-completion ()
+  (use-package company-ycmd
+    ;;Set company behavior
+    (let ((map company-active-map))
+      (define-key map (kbd "<tab>") 'company-complete-selection)
+      (define-key map (kbd "RET") 'nil)))
+  )
 
+(defun better-auto-completion-packages/post-init-syntax-checking ()
+  (use-package flycheck-ycmd
+    ;;Help artifacts when using terminal mode
+    (when (not (display-graphic-p))
+      (setq flycheck-indication-mode nil)))
+  )
 
 ;;; packages.el ends here
