@@ -30,16 +30,9 @@
 
 (setq orxtended-packages
   '(
-    (ox-extra :location local)
     )
   )
 
  ;; For each extension, define a function orxtended/init-<extension-orxtended>
   ;;
-  (defun orxtended/init-ox-extra ()
-    (use-package ox-extra
-      :config
-      (ox-extras-activate '(ignore-headlines))
-      )
-)
 ;;; packages.el ends here
