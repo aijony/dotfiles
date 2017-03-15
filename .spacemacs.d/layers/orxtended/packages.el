@@ -27,12 +27,19 @@
 ;;   define the functions `orxtended/pre-init-PACKAGE' and/or
 ;;   `orxtended/post-init-PACKAGE' to customize the package as it is loaded.
 
-
 (setq orxtended-packages
-  '(
-    )
-  )
+      '(
+        (ox-extra :location local)
+        )
+      )
 
- ;; For each extension, define a function orxtended/init-<extension-orxtended>
-  ;;
+;; For each extension, define a function orxtended/init-<extension-orxtended>
+;;
+(defun orxtended/init-ox-extra ()
+  (use-package ox-extra
+    :config
+    (ox-extras-activate '(ignore-headlines))
+    )
+)
+ 
 ;;; packages.el ends here
