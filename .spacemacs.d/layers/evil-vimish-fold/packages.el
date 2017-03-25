@@ -30,8 +30,7 @@
 ;;; Code:
 
 (setq evil-vimish-fold-packages
-      '(vimish-fold
-        evil-vimish-fold))
+      '(evil-vimish-fold))
 
 (defun evil-vimish-fold/init-evil-vimish-fold ()
   (use-package evil-vimish-fold

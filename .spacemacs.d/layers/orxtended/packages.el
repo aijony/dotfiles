@@ -41,5 +41,36 @@
     (ox-extras-activate '(ignore-headlines))
     )
 )
+
+(defun orxtended/post-init-org-mode ()
+
+  (setq org-tags-column 0)
+  ;; Show images when opening a file.
+  (setq org-startup-with-inline-images t)
+
+  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
+  (setq org-latex-create-formula-image-program 'dvipng)
+  (require 'ob-latex)
+
+    ;; Do not confirm before evaluation
+    (setq org-confirm-babel-evaluate nil)
+
+    ;; Do not evaluate code blocks when exporting.
+    (setq org-export-babel-evaluate nil)
+
+
+    (org-babel-do-load-languages 'org-babel-load-languages
+                                 '((C . t)
+                                   (latex . t)
+                                   (python . t)
+                                   (sagemath . t)
+                                   (org.)
+                                   (org . t)
+                                   ))
+
+    )
+
+
  
 ;;; packages.el ends here
