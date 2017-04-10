@@ -7,11 +7,23 @@
 
 
 (setq org-ref-default-bibliography '("~/documents/sync/bibliography/references.bib")
-      org-ref-pdf-directory "~/documents/sync/bibliography/"
-      org-ref-bibliography-notes "~/documents/sync/bibliography/notes.org")
+      org-ref-pdf-directory
+      "~/documents/sync/bibliography/"
+      org-ref-bibliography-notes
+      "~/documents/sync/bibliography/notes.org")
 
-(setq org-latex-pdf-process
-      '("pdflatex -interaction nonstopmode -output-directory %o %f"
-        "bibtex %b"
-        "pdflatex -interaction nonstopmode -output-directory %o %f"
-        "pdflatex -interaction nonstopmode -output-directory %o %f"))
+(setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
+                              "bibtex %b" "pdflatex -interaction nonstopmode -output-directory %o %f"
+                              "pdflatex -interaction nonstopmode -output-directory %o %f"))
+
+
+;; Show images after evaluating code blocks.
+(setq org-startup-with-inline-images t)
+
+
+(add-hook 'org-babel-after-execute-hook 'orxtended/after-babel)
+
+(setq org-startup-with-latex-preview t)
+
+
+
