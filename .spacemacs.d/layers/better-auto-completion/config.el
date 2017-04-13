@@ -23,7 +23,10 @@
        (get-buffer-process (current-buffer))
        nil "_"))))
 
+;;Flycheck
 
+;;de-pop-up-ify Flycheck
+(flycheck-pos-tip-mode)
 
 ;;Build directory settings
 
@@ -46,7 +49,7 @@
 
 
 
-;;YCMD
+;; YCMD
 
 (add-hook 'after-init-hook #'global-ycmd-mode)
 (add-hook 'c++-mode-hook 'ycmd-mode)
