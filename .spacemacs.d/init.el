@@ -61,7 +61,10 @@ values."
      c-c++
      csharp
      emacs-lisp
-     haskell
+     (haskell :variables
+              haskell-completion-backend 'intero
+              haskell-enable-hindent-style "johan-tibell"
+              )
      go
      html
      ipython-notebook
