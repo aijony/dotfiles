@@ -19,8 +19,8 @@ sudo ./build.py --all
 
 cd ~/.spacemacs.d
 
-mkdir private
+mkdir layers
 
-cd private
+cd layers
 
 svn checkout https://github.com/aijony/dotfiles/trunk/.spacemacs.d/private/better-auto-completion
