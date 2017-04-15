@@ -19,14 +19,16 @@
     (let ((python-shell-completion-native-enable t)
           (python-shell-completion-native-output-timeout
            python-shell-completion-native-try-output-timeout))
-      (python-shell-completion-native-get-completions
-       (get-buffer-process (current-buffer))
-       nil "_"))))
+      (python-shell-completion-native-get-completions (get-buffer-process (current-buffer))
+                                                      nil
+                                                      "_"))))
 
 ;;Flycheck
 
 ;;de-pop-up-ify Flycheck
-(flycheck-pos-tip-mode)
+(add-hook 'flycheck-mode-hook (lambda ()
+(if (eq flycheck-pos-tip-mode t)
+    (flycheck-pos-tip-mode 'toggle))))
 
 ;;Build directory settings
 
