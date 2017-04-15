@@ -42,13 +42,20 @@
 ;;with cperl-electric and smart-parens
 (add-hook 'cperl-mode-hook
           #'company-mode
-          (lambda () (local-unset-key (kbd "{")))
-          )
+          (lambda ()
+            (local-unset-key (kbd "{"))))
+
+
 
 ;; Haskell
-(setenv "PATH" (concat (file-truename "~/.local/bin:") (getenv "PATH")))
-(add-to-list 'exec-path "~/.local/bin/")
-
+(setq better-auto-completion/stack-path (file-truename "~/.local/bin:"))
+(setenv "PATH"
+        (concat better-auto-completion/stack-path
+                (getenv "PATH")))
+(add-to-list 'exec-path better-auto-completion/stack-path)
+(with-eval-after-load 'eshell
+  (setq eshell-path-env (concat better-auto-completion/stack-path
+                                eshell-path-env)))
 
 
 ;; YCMD
@@ -57,7 +64,8 @@
 (add-hook 'c++-mode-hook 'ycmd-mode)
 
 ;;Safe command for .dir-locals.el
-(put 'helm-make-build-dir 'safe-local-variable 'stringp)
+(put 'helm-make-build-dir 'safe-local-variable
+     'stringp)
 
 ;;Default build directory
 (setq build-dir '"build")
@@ -70,7 +78,8 @@
 (defun my-eval-string (string)
   (car (read-from-string string)))
 
-(setq to-command (my-eval-string (concat "(\""word-python "\" \"" ycmd-dir "\")")))
+(setq to-command (my-eval-string (concat "(\"" word-python "\" \"" ycmd-dir
+                                         "\")")))
 
 (set-variable 'ycmd-server-command to-command)
 
@@ -86,6 +95,9 @@
   (add-hook 'semantic-mode-hook
             (lambda ()
               (dolist (x (default-value 'completion-at-point-functions))
-                (when (string-prefix-p "semantic-" (symbol-name x))
-                  (remove-hook 'completion-at-point-functions x))))))
+                (when (string-prefix-p "semantic-"
+                                       (symbol-name x))
+                  (remove-hook 'completion-at-point-functions
+                               x))))))
+
 

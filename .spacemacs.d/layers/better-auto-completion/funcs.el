@@ -1,13 +1,10 @@
 
 (defun ycmd-generate ()
   (interactive)
-  (let (
-        (project-dir (format "%s" (projectile-project-root)))
-        (generator-dir ycmd-generate-command )
-        )
-    (shell-command (format "%s %s" generator-dir  project-dir ))
-    )
-  )
+  (let ((project-dir (format "%s"
+                             (projectile-project-root)))
+        (generator-dir ycmd-generate-command))
+    (shell-command (format "%s %s" generator-dir project-dir))))
 
 
 ;;Fuzzy-file-insert
@@ -24,11 +21,25 @@
   The default with no prefix is to insert the file name exactly as
   it appears in the minibuffer prompt."
   ;; Based on insert-file in Emacs -- ashawley 20080926
+
   (interactive "*fInsert file name: \nP")
-  (cond ((eq '- args)
-         (insert (file-relative-name filename)))
-        ((not (null args))
-         (insert (expand-file-name filename)))
-        (t
-         (insert filename))))
+  (cond
+   ((eq '- args)
+    (insert (file-relative-name filename)))
+   ((not (null args))
+    (insert (expand-file-name filename)))
+   (t (insert filename))))
+
+
+
+(defun better-auto-completion/enable-ycmd-modes (language-list)
+  (loop for
+        language-hook
+        in
+        language-list
+        do
+        (add-hook language-hook 'ycmd-mode)))
+
+
+
 

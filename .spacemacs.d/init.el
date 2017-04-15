@@ -382,6 +382,11 @@ you (should) place your code here."
 
   (setq evil-escape-key-sequence "kj")
 
+
+  (better-auto-completion/enable-ycmd-modes '(javascript-mode-hook
+                                              python-mode-hook
+                                              rust-mode-hook))
+
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((C . t)
                                  (latex . t)
