@@ -57,11 +57,12 @@
   (setq eshell-path-env (concat better-auto-completion/stack-path
                                 eshell-path-env)))
 
+(setq haskell-program-name "stack exec intero")
+
 
 ;; YCMD
 
 (add-hook 'after-init-hook #'global-ycmd-mode)
-(add-hook 'c++-mode-hook 'ycmd-mode)
 
 ;;Safe command for .dir-locals.el
 (put 'helm-make-build-dir 'safe-local-variable

@@ -11,6 +11,8 @@
 
 * Description
 
+/*This layer is old and probably doesn't work anymore*/
+
 A layer designed to be paired with the [[https://github.com/aijony/dotfiles/tree/master/.scripts/ycmd][spacemacs ycmd setup script]]
 Because [[https://github.com/Valloric/ycmd][ycmd]] is confusing to setup, though it is a beautiful compilation of auto-completion engines.
 

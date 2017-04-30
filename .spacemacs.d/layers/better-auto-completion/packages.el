@@ -40,8 +40,8 @@
   (use-package company-ycmd
     ;;Set company behavior
     (let ((map company-active-map))
-      (define-key map (kbd "<tab>") 'company-complete-selection)
-      (define-key map (kbd "RET") 'nil)))
+      (define-key map (kbd "RET") 'company-complete-selection)
+      (define-key map (kbd "tab") 'nil)))
   )
 
 (defun better-auto-completion-packages/post-init-syntax-checking ()
