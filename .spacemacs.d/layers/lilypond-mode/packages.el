@@ -32,7 +32,11 @@
 
 (defconst lilypond-mode-packages
   '(
-    (lilypond-mode :location local)
+    (lilypond-mode :location (recipe
+                              :fetcher git
+                              :url "git://git0.savannah.gnu.org/lilypond.git"
+                              :files ("*.el"
+                                      (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el"))))
     )
   )
 
