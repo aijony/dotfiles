@@ -5,3 +5,6 @@
 [submodule "/home/aidan/.spacemacs.d/layers/lilypond-mode/extensions"]
 	path = /home/aidan/.spacemacs.d/layers/lilypond-mode/extensions
 	url = https://github.com/jstamant/lilypond-mode.git
+[submodule ".emacs.d"]
+	path = .emacs.d
+	url = https://github.com/syl20bnr/spacemacs.git
