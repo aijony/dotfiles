@@ -31,12 +31,23 @@
 (setq writing-packages
       '(
         writegood-mode
+        writeroom-mode
+        wordsmith-mode
         synonyms
         ))
 
 (defun writing/init-writegood-mode ()
   (use-package writegood-mode)
   )
+
+(defun writing/init-writeroom-mode ()
+  (use-package writeroom-mode)
+  )
+
+(defun writing/init-wordsmith-mode ()
+  (use-package wordsmith-mode)
+  )
+
 (defun writing/init-synonyms ()
   (use-package synonyms
   :init
