@@ -57,7 +57,9 @@ values."
      ruby-on-rails
      ;;Useless
      selectric
-     (rcirc :variables rcirc-enable-authinfo-support t)
+     (rcirc :variables
+            rcirc-enable-authinfo-support t
+            rcirc-enable-znc-support t)
      ;;Languages
      c-c++
      csharp
@@ -385,7 +387,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you (should) place your code here."
 
   ;;These secrets have yet to be revealed.
-  ;; Set the cursor color based on the evil state
+  (load "~/.irc.el")
 
   (setq powerline-default-separator 'arrow)
   (spacemacs/increase-transparency)
