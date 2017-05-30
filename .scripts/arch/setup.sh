@@ -9,3 +9,5 @@ cd ~/.scripts/ycmd
 ./install.sh
 
 stack install apply-refact hlint stylish-haskell hasktags hoogle intero hindent
+
+stack setup
