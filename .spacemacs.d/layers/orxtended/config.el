@@ -25,5 +25,5 @@
 
 (setq org-startup-with-latex-preview t)
 
-(plist-put org-format-latex-options :scale 1.35)
+
 

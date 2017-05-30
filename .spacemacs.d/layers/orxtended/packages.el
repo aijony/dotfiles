@@ -64,7 +64,9 @@
   ;; Do not confirm before evaluation
   (setq org-confirm-babel-evaluate nil)
   ;; Do not evaluate code blocks when exporting.
-  (setq org-export-babel-evaluate nil))
+  (setq org-export-babel-evaluate nil)
+
+  )
 
 
 

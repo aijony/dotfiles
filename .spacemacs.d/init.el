@@ -400,6 +400,8 @@ you (should) place your code here."
                                               rust-mode-hook
                                               c++-mode-hook))
 
+  (plist-put org-format-latex-options :scale 1.35)
+
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((C . t)
                                  (latex . t)
