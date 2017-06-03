@@ -34,6 +34,7 @@
         writeroom-mode
         wordsmith-mode
         synonyms
+        langtool
         ))
 
 (defun writing/init-writegood-mode ()
@@ -46,6 +47,15 @@
 
 (defun writing/init-wordsmith-mode ()
   (use-package wordsmith-mode)
+  )
+
+
+(defun writing/init-langtool ()
+  (use-package langtool
+  :config
+  ;; This may only work for arch
+  (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*")
+)
   )
 
 (defun writing/init-synonyms ()
