@@ -8,6 +8,8 @@ sudo pacman -S sagemath svn rust cargo cscope cmake haskell-stack jupyter python
 cd ~/.scripts/ycmd
 ./install.sh
 
-stack install apply-refact hlint stylish-haskell hasktags hoogle intero hindent
 
 stack setup
+
+stack install apply-refact hlint stylish-haskell hasktags hoogle intero hindent
+
