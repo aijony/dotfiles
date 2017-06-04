@@ -3,7 +3,7 @@
 #Requires a user to be made first 
 sudo pacman -Syu
 
-sudo pacman -S sagemath svn rust cargo cscope cmake haskell-stack jupyter python3 python2 neovim git lilypond go make clang base-devel ncurses boost boost-libs mono npm nodejs aspell aspell-en
+sudo pacman -S sagemath svn rust cargo cscope cmake haskell-stack jupyter python3 python2 neovim git lilypond go make clang base-devel ncurses boost boost-libs mono npm nodejs aspell aspell-en languagetool
 
 cd ~/.scripts/ycmd
 ./install.sh
