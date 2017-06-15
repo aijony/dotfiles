@@ -108,13 +108,13 @@ values."
      bibtex
      browsing
      lines
+     theme
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-                                      nord-theme
 
                                       )
    ;; A list of packages that cannot be updated.
@@ -411,7 +411,8 @@ you (should) place your code here."
                                  (org . t)))
 
 
-  )
+
+)
 
 
 (custom-set-faces
