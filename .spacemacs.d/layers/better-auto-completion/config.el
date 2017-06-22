@@ -48,14 +48,7 @@
 
 
 ;; Haskell
-(setq better-auto-completion/stack-path (file-truename "~/.local/bin:"))
-(setenv "PATH"
-        (concat better-auto-completion/stack-path
-                (getenv "PATH")))
-(add-to-list 'exec-path better-auto-completion/stack-path)
-(with-eval-after-load 'eshell
-  (setq eshell-path-env (concat better-auto-completion/stack-path
-                                eshell-path-env)))
+
 
 (setq haskell-program-name "stack exec intero")
 
