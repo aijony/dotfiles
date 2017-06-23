@@ -394,19 +394,30 @@ you (should) place your code here."
   ;;These secrets have yet to be revealed.
   (load "~/.irc.el")
 
+  ;;Good looks
   (setq powerline-default-separator 'arrow)
   (spacemacs/increase-transparency)
 
+  ;;Good gameplay
   (setq evil-escape-key-sequence "kj")
   (setq evil-search-module (quote evil-search))
 
+  ;;Auto-complete language specifics
   (better-auto-completion/enable-ycmd-modes '(javascript-mode-hook
                                               python-mode-hook
                                               rust-mode-hook
-                                              c++-mode-hook))
+                                              c++-mode-hook
+                                              c-mode-hook))
+  ;;Auto-complete python specifics
+  (push 'company-ycmd company-backends-python-mode)
+  (delete 'company-anaconda company-backends-python-mode)
+  (remove-hook 'python-mode-hook 'anaconda-mode)
+
+
 
   (plist-put org-format-latex-options :scale 1.35)
 
+  ;;Babel Language specifics
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((C . t)
                                  (latex . t)
