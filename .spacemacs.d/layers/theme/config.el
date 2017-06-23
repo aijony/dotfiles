@@ -40,7 +40,7 @@
 (unless (>= emacs-major-version 24)
   (error "Nord theme requires Emacs 24 or later!"))
 
-(deftheme nord "An arctic, north-bluish clean and elegant theme")
+(deftheme nord9 "An arctic, north-bluish clean and elegant theme")
 ;;;; Color Constants
 (let ((class '((class color) (min-colors 89)))
   (nord0 (if (display-graphic-p) "#2E3440" nil))
@@ -78,7 +78,7 @@
 ;;;; + Core Faces +
 ;;;; +------------+
   (custom-theme-set-faces
-    'nord
+    'nord9
     ;; +--- Base ---+
     `(bold ((,class (:weight bold))))
     `(bold-italic ((,class (:weight bold :slant italic))))
@@ -566,6 +566,28 @@
     `(neo-vc-up-to-date-face ((,class (:foreground ,nord4))))
     `(neo-vc-user-face ((,class (:foreground ,nord4))))
 
+    ;; > ledger
+   `(ledger-font-payee-uncleared-face ((t (:foreground ,nord3 :weight normal))))
+   `(ledger-font-payee-cleared-face ((t (:foreground ,nord10 :weight normal))))
+   `(ledger-font-payee-pending-face ((t (:foreground ,nord9 :weight normal))))
+   `(ledger-font-xact-highlight-face ((t (:background ,nord1))))
+   `(ledger-font-auto-xact-face ((t (:foreground ,nord8 :weight normal))))
+   `(ledger-font-periodic-xact-face ((t (:foreground ,nord9 :weight normal))))
+   `(ledger-font-pending-face ((t (:foreground ,nord2 weight: normal))))
+   `(ledger-font-other-face ((t (:foreground ,nord4))))
+   `(ledger-font-posting-date-face ((t (:foreground ,nord9 :weight normal))))
+   `(ledger-font-posting-account-face ((t (:foreground ,nord9))))
+   `(ledger-font-posting-account-cleared-face ((t (:foreground ,nord4))))
+   `(ledger-font-posting-account-pending-face ((t (:foreground ,nord9))))
+   `(ledger-font-posting-amount-face ((t (:foreground ,nord4))))
+   `(ledger-occur-narrowed-face ((t (:foreground ,nord4 :invisible t))))
+   `(ledger-occur-xact-face ((t (:background ,nord6))))
+   `(ledger-font-comment-face ((t (:foreground ,nord-comment))))
+   `(ledger-font-reconciler-uncleared-face ((t (:foreground ,nord8 :weight bold))))
+   `(ledger-font-reconciler-cleared-face ((t (:foreground ,nord4 :weight normal))))
+   `(ledger-font-reconciler-pending-face ((t (:foreground ,nord9 :weight normal))))
+   `(ledger-font-report-clickable-face ((t (:foreground ,nord9 :weight normal))))
+
     ;; > Org
     `(org-level-1 ((,class (:foreground ,nord8 :weight bold))))
     `(org-level-2 ((,class (:inherit org-level-1))))
@@ -628,7 +650,7 @@
   (add-to-list 'custom-theme-load-path
     (file-name-as-directory (file-name-directory load-file-name))))
 
-(provide-theme 'nord)
+(provide-theme 'nord9)
 
 ;; Local Variables:
 ;; no-byte-compile: t
