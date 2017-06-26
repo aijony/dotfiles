@@ -36,7 +36,8 @@
     persp-mode
     circe-notifications
     helm
-    (circe-show-channels :location local)))
+    helm-circe
+    ))
 
 (defun circe/init-circe ()
   (use-package circe
@@ -142,13 +143,6 @@
             (with-current-buffer buf (derived-mode-p 'circe-mode)))
           persp-filter-save-buffers-functions)))
 
-(defun circe/init-circe-show-channels ()
-  (use-package circe-show-channels
-    :after circe
-    :bind
-    (:map
-     circe-mode-map
-     ("C-c C-s" . circe-show-channels))
-    ))
+
 
 ;;; packages.el ends here
