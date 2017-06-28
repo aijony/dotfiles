@@ -143,6 +143,8 @@
             (with-current-buffer buf (derived-mode-p 'circe-mode)))
           persp-filter-save-buffers-functions)))
 
+(defun circe/init-helm-circe ()
+  (use-package helm-circe))
 
 
 ;;; packages.el ends here
