@@ -410,7 +410,9 @@ you (should) place your code here."
   (delete 'company-anaconda company-backends-python-mode)
   (remove-hook 'python-mode-hook 'anaconda-mode)
 
-
+  ;; Latex Preview Packages
+  ;; Woo category theory
+  (add-to-list 'org-latex-packages-alist '("" "tikz-cd" nil))
 
   (plist-put org-format-latex-options :scale 1.35)
 
