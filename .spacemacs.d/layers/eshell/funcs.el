@@ -19,14 +19,14 @@
   (delete-window))
 
 
-(defun eshell/set-path (path)
+(defun eshell/set-path (path-input)
   ;;Preferred input is "~/location" for home directory
-  (let ((eshell/path (file-truename path)))
-    (setq eshell-path-env (concat eshell/path ":" eshell-path-env))
-    (setenv "PATH"
-            (concat eshell/path
+  (let ((path (file-truename path-input)))
+    (setq eshell-path-env (concat path ":" eshell-path-env))
+    (setenv ""PATH
+            (concat path
                     ":"
                     (getenv "PATH")))
     (add-to-list 'exec-path
-                 (concat eshell/path "/"))))
+                 (concat path "/"))))
 
