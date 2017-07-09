@@ -47,7 +47,6 @@ values."
      semantic
      speed-reading
      spell-checking
-     themes-megapack
      theming
      syntax-checking
      ycmd
@@ -447,100 +446,3 @@ you (should) place your code here."
  '(spaceline-highlight-face ((t (:background "gray" :foreground "#3E3D31" :inherit (quote mode-line)))))
  '(spacemacs-insert-face ((t (:background "white" :foreground "#434C5E" :inherit (quote mode-line)))))
  '(spacemacs-normal-face ((t (:background "light gray" :foreground "#434C5E" :inherit (quote mode-line))))))
-
-(defun dotspacemacs/emacs-custom-settings ()
-  "Emacs custom settings.
-This is an auto-generated function, do not modify its content directly, use
-Emacs customize menu instead.
-This function is called at the very end of Spacemacs initialization."
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476" "f4320a795defe6b9018f4d4129fb8ccbaf55c50c12f1922aab1cbe789885da1c" default)))
- '(evil-want-Y-yank-to-eol nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ansi-color-faces-vector
-   [default bold shadow italic underline bold bold-italic bold])
- '(ansi-term-color-vector
-   [unspecified "#1F1611" "#660000" "#144212" "#EFC232" "#5798AE" "#BE73FD" "#93C1BC" "#E6E1DC"] t)
- '(compilation-message-face (quote default))
- '(custom-safe-themes
-   (quote
-    ("d3a7eea7ebc9a82b42c47e49517f7a1454116487f6907cf2f5c2df4b09b50fc1" "62408b3adcd05f887b6357e5bd9221652984a389e9b015f87bbc596aba62ba48" "b85fc9f122202c71b9884c5aff428eb81b99d25d619ee6fde7f3016e08515f07" "9b59e147dbbde5e638ea1cde5ec0a358d5f269d27bd2b893a0947c4a867e14c1" "8062d7fd259d3232d69b38db3b15d4ac44a70bf620cbc5b3926a6e16c74d6a5a" "6c35ffc17f8288be4c7866deb7437e8af33cd09930e195738cdfef911ab77274" "3a5f04a517096b08b08ef39db6d12bd55c04ed3d43b344cf8bd855bde6d3a1ae" "5a21604c4b1f2df98e67cda2347b8f42dc9ce471a48164fcb8d3d52c3a0d10be" "3e335d794ed3030fefd0dbd7ff2d3555e29481fe4bbb0106ea11c660d6001767" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" "51e228ffd6c4fff9b5168b31d5927c27734e82ec61f414970fc6bcce23bc140d" "f4320a795defe6b9018f4d4129fb8ccbaf55c50c12f1922aab1cbe789885da1c" default)))
- '(evil-want-Y-yank-to-eol nil)
- '(fci-rule-character-color "#452E2E")
- '(fci-rule-color "#151515" t)
- '(highlight-changes-colors (quote ("#FD5FF0" "#AE81FF")))
- '(highlight-tail-colors
-   (quote
-    (("#3C3D37" . 0)
-     ("#679A01" . 20)
-     ("#4BBEAE" . 30)
-     ("#1DB4D0" . 50)
-     ("#9A8F21" . 60)
-     ("#A75B00" . 70)
-     ("#F309DF" . 85)
-     ("#3C3D37" . 100))))
- '(linum-format " %7i ")
- '(magit-diff-use-overlays nil)
- '(notmuch-saved-searches
-   (quote
-    ((:name "inbox" :query "tag:inbox" :key "i" :sort-order nil)
-     (:name "unread" :query "tag:unread" :key "u")
-     (:name "flagged" :query "tag:flagged" :key "f")
-     (:name "sent" :query "tag:sent" :key "t")
-     (:name "drafts" :query "tag:draft" :key "d")
-     (:name "all mail" :query "*" :key "a"))))
- '(nrepl-message-colors
-   (quote
-    ("#CC9393" "#DFAF8F" "#F0DFAF" "#7F9F7F" "#BFEBBF" "#93E0E3" "#94BFF3" "#DC8CC3")))
- '(package-selected-packages
-   (quote
-    (nm flycheck-coala package-lint mu4e-maildirs-extension mu4e-alert notmuch emacsql format-sql helm-circe circe-notifications circe znc erc-yt erc-view-log erc-social-graph erc-image erc-hl-nicks csv-mode let-alist hledger-mode ledger-mode flycheck-ledger langtool xah-find helm-unicode visual-fill-column wordsmith-mode writeroom-mode evil-mc-extras powerline rake inflections pcre2el spinner log4e gntp shut-up skewer-mode simple-httpd json-snatcher json-reformat multiple-cursors hydra parent-mode xcscope haml-mode gitignore-mode fringe-helper git-gutter+ git-gutter gh marshal logito pcache ht flyspell-correct seq pos-tip flx iedit anzu goto-chg undo-tree highlight scala-mode websocket autothemer pkg-info request-deferred request epl web-completion-data dash-functional tern go-mode ghc haskell-mode inf-ruby bind-map bind-key deferred packed anaconda-mode pythonic f dash auto-complete popup nord-theme markdown-mode evil-multiedit git-commit org-plus-contrib sbt-mode auctex eclim smartparens evil ycmd company magit-popup with-editor csharp-mode async alert yasnippet projectile js2-mode s diminish rcirc-notify rcirc-color latex-unicode-math-mode imenu-list rainbow-mode rainbow-identifiers color-identifiers-mode helm-dash zeal-at-point magit helm helm-core avy flycheck php-mode rust-mode tablist key-chord ivy helm-bibtex parsebib biblio biblio-core sage-shell-mode github-browse-file zonokai-theme zenburn-theme zen-and-art-theme yapfify yaml-mode xterm-color ws-butler writegood-mode winum which-key web-mode web-beautify volatile-highlights vimrc-mode vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme tronesque-theme toxi-theme toml-mode toc-org tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit synonyms sunny-day-theme sublime-themes subatomic256-theme subatomic-theme stickyfunc-enhance srefactor sql-indent spray spaceline spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme selectric-mode scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe reverse-theme restart-emacs rbenv rainbow-delimiters railscasts-theme racer pyvenv pytest pyenv-mode py-isort purple-haze-theme pug-mode projectile-rails professional-theme popwin planet-theme pip-requirements phpunit phpcbf php-extras php-auto-yasnippets phoenix-dark-pink-theme phoenix-dark-mono-theme persp-mode pdf-tools pastels-on-dark-theme paradox ox-reveal orgit organic-green-theme org-ref org-projectile org-present org-pomodoro org-download org-bullets open-junk-file omtose-phellack-theme omnisharp oldlace-theme occidental-theme obsidian-theme ob-sagemath noflet noctilux-theme niflheim-theme neotree naquadah-theme mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme mmm-mode minitest minimal-theme meghanada material-theme markdown-toc majapahit-theme magithub magit-gitflow magit-gh-pulls madhat2r-theme macrostep lush-theme lua-mode lorem-ipsum livid-mode live-py-mode linum-relative link-hint light-soap-theme less-css-mode json-mode js2-refactor js-doc jbeans-theme jazz-theme ir-black-theme intero insert-shebang inkpot-theme info+ indent-guide hy-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt heroku-theme hemisu-theme help-fns+ helm-themes helm-swoop helm-sage helm-pydoc helm-purpose helm-projectile helm-mode-manager helm-make helm-hoogle helm-gtags helm-gitignore helm-flx helm-descbinds helm-css-scss helm-cscope helm-company helm-c-yasnippet helm-ag hc-zenburn-theme haskell-snippets gruvbox-theme gruber-darker-theme groovy-mode groovy-imports grandshell-theme gradle-mode gotham-theme google-translate golden-ratio go-guru go-eldoc gnuplot github-search github-clone gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link git-gutter-fringe git-gutter-fringe+ gist gh-md ggtags gandalf-theme fuzzy flyspell-correct-helm flycheck-ycmd flycheck-rust flycheck-pos-tip flycheck-haskell flx-ido flatui-theme flatland-theme fish-mode firebelly-theme fill-column-indicator feature-mode farmhouse-theme fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help ensime emmet-mode elisp-slime-nav ein dumb-jump drupal-mode dracula-theme django-theme disaster diff-hl define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cython-mode cyberpunk-theme company-ycmd company-web company-tern company-statistics company-shell company-go company-ghci company-ghc company-emacs-eclim company-cabal company-c-headers company-auctex company-anaconda column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized coffee-mode cmm-mode cmake-mode clues-theme clean-aindent-mode clang-format chruby cherry-blossom-theme cargo busybee-theme bundler bubbleberry-theme browse-at-remote birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-complete-sage auto-compile auctex-latexmk apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell)))
- '(pdf-view-midnight-colors (quote ("#DCDCCC" . "#383838")))
- '(pos-tip-background-color "#303030")
- '(pos-tip-foreground-color "#272822")
- '(send-mail-function (quote smtpmail-send-it))
- '(vc-annotate-background "#3b3b3b")
- '(vc-annotate-color-map
-   (quote
-    ((20 . "#dd5542")
-     (40 . "#CC5542")
-     (60 . "#fb8512")
-     (80 . "#baba36")
-     (100 . "#bdbc61")
-     (120 . "#7d7c61")
-     (140 . "#6abd50")
-     (160 . "#6aaf50")
-     (180 . "#6aa350")
-     (200 . "#6a9550")
-     (220 . "#6a8550")
-     (240 . "#6a7550")
-     (260 . "#9b55c3")
-     (280 . "#6CA0A3")
-     (300 . "#528fd1")
-     (320 . "#5180b3")
-     (340 . "#6380b3")
-     (360 . "#DC8CC3"))))
- '(vc-annotate-very-old-color "#DC8CC3")
- '(weechat-color-list
-   (unspecified "#272822" "#3C3D37" "#F70057" "#F92672" "#86C30D" "#A6E22E" "#BEB244" "#E6DB74" "#40CAE4" "#66D9EF" "#FB35EA" "#FD5FF0" "#74DBCD" "#A1EFE4" "#F8F8F2" "#F8F8F0"))
- '(xterm-color-names
-   ["#303030" "#D66F84" "#D79887" "#D49A8A" "#94B1A3" "#A8938C" "#989584" "#BAB2A9"])
- '(xterm-color-names-bright
-   ["#3A3A3A" "#E47386" "#CC816B" "#769188" "#7D6F6A" "#9C8772" "#BAB2A9"]))

@@ -23,7 +23,7 @@
   ;;Preferred input is "~/location" for home directory
   (let ((path (file-truename path-input)))
     (setq eshell-path-env (concat path ":" eshell-path-env))
-    (setenv ""PATH
+    (setenv "PATH"
             (concat path
                     ":"
                     (getenv "PATH")))
