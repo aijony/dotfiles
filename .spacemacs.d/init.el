@@ -33,7 +33,6 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -84,6 +83,7 @@ values."
      sql
      shell-scripts
      vimscript
+     yaml
      ;;Version Control
      git
      github
@@ -109,9 +109,11 @@ values."
      orxtended
      bibtex
      browsing
-     lines
+     line
      theme
-     notmuch
+     (notmuch :variables
+              notmuch-better-defaults 't
+              notmuch-use-msmtp 't)
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -231,7 +233,7 @@ values."
    ;; If non-nil, the shift mappings `<' and `>' retain visual state if used
    ;; there. (default t)
    dotspacemacs-retain-visual-state-on-shift t
-   ;; If non-nil, J and K move lines up and down when in visual mode.
+   ;; If non-nil, J and K move line up and down when in visual mode.
    ;; (default nil)
    dotspacemacs-visual-line-move-text nil
    ;; If non-nil, inverse the meaning of `g' in `:substitute' Evil ex-command.
@@ -359,8 +361,8 @@ values."
    dotspacemacs-default-package-repository nil
    ;; Delete whitespace while saving buffer. Possible values are `all'
    ;; to aggressively delete empty line and long sequences of whitespace,
-   ;; `trailing' to delete only the whitespace at end of lines, `changed'to
-   ;; delete only whitespace for changed lines or `nil' to disable cleanup.
+   ;; `trailing' to delete only the whitespace at end of line, `changed'to
+   ;; delete only whitespace for changed line or `nil' to disable cleanup.
    ;; (default nil)
    dotspacemacs-whitespace-cleanup nil
    ))
@@ -392,6 +394,7 @@ you (should) place your code here."
   ;;These secrets have yet to be revealed.
   (load "~/.irc.el")
 
+  ;;tag
 
   ;;Good looks
   (setq powerline-default-separator 'arrow)
