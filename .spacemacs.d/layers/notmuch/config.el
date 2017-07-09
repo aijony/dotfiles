@@ -24,7 +24,11 @@ leave the defaults up to notmuch.
 ")
 
 (defvar notmuch-use-sendmail nil
-  "Defines variables to use sendmail/msmtp")
+  "Defines variables to use send mail if t, if
+a file path is sent, that will be the mail used.
+For example sending /usr/bin/msmtp will use
+msmtp instead of sendmail.
+ ")
 
 ;;List of default notmuch modes that will become evilifed.
 (setq notmuch-evilify-mode-list '(notmuch-hello-mode
