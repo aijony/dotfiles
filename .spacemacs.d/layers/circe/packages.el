@@ -45,7 +45,6 @@
     :config
     (progn
       (set-face-background 'circe-prompt-face nil)
-
       (setq circe-reduce-lurker-spam t)
       (setq circe-use-cycle-completion t)
       (setq circe-active-users-timeout (* 60 30)) ; 30 minutes
@@ -125,26 +124,19 @@
         (setq circe-notifications-alert-style 'osx-notifier)))))
 
 (defun circe/post-init-persp-mode ()
-  (defun circe/maybe-refresh-layout ()
-    (when (equal "IRC" (spacemacs//current-layout-name))
-      (circe-show-channels)))
+  ;; do not save circe buffers
+  (with-eval-after-load 'persp-mode
+    (push (lambda (b) (with-current-buffer b (eq major-mode 'circe-mode)))
+          persp-filter-save-buffers-functions))
 
-  (add-hook 'circe-channel-mode-hook #'circe/maybe-refresh-layout)
-  (add-hook 'persp-activated-hook #'circe/maybe-refresh-layout)
-
-  (spacemacs|define-custom-layout "IRC"
-    :binding "i"
+  (spacemacs|define-custom-layout circe-spacemacs-layout-name
+    :binding circe-spacemacs-layout-binding
     :body
-    (circe-show-channels))
-
-  (spacemacs|use-package-add-hook persp-mode
-    :post-config
-    (push (lambda (buf)
-            (with-current-buffer buf (derived-mode-p 'circe-mode)))
-          persp-filter-save-buffers-functions)))
-
-(defun circe/init-helm-circe ()
-  (use-package helm-circe))
-
-
+    (progn
+      (defun spacemacs-layouts/add-circe-buffer-to-persp ()
+        (persp-add-buffer (current-buffer)
+                          (persp-get-by-name
+                           circe-spacemacs-layout-name)))
+      (add-hook 'circe-mode-hook #'spacemacs-layouts/add-circe-buffer-to-persp)
+      (call-interactively 'circe))))
 ;;; packages.el ends here

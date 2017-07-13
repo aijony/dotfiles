@@ -394,6 +394,8 @@ you (should) place your code here."
   (load "~/.irc.el")
 
   ;;tag
+  (setq persp-add-buffer-on-after-change-major-mode t)
+
 
   ;;Good looks
   (setq powerline-default-separator 'arrow)
@@ -403,6 +405,9 @@ you (should) place your code here."
   (setq evil-escape-key-sequence "kj")
   (setq evil-search-module (quote evil-search))
 
+  (setq persp-set-frame-buffer-predicate nil)
+
+  (setq persp-when-kill-switch-to-buffer-in-perspective nil)
 
   ;;Auto-complete language specifics
   (better-auto-completion/enable-ycmd-modes '(javascript-mode-hook
