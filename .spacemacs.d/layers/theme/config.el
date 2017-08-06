@@ -568,8 +568,8 @@
 
     ;; > ledger
    `(ledger-font-payee-uncleared-face ((t (:foreground ,nord3 :weight normal))))
-   `(ledger-font-payee-cleared-face ((t (:foreground ,nord10 :weight normal))))
-   `(ledger-font-payee-pending-face ((t (:foreground ,nord9 :weight normal))))
+   `(ledger-font-payee-cleared-face ((t (:foreground ,nord3 :weight normal))))
+   `(ledger-font-payee-pending-face ((t (:foreground ,nord3 :weight normal))))
    `(ledger-font-xact-highlight-face ((t (:background ,nord1))))
    `(ledger-font-auto-xact-face ((t (:foreground ,nord8 :weight normal))))
    `(ledger-font-periodic-xact-face ((t (:foreground ,nord9 :weight normal))))

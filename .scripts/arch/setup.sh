@@ -12,5 +12,6 @@ cd ~/.scripts/ycmd
 
 stack setup
 
-stack install apply-refact hlint stylish-haskell hasktags hoogle intero hindent hledger
+stack install apply-refact hlint stylish-haskell hasktags hoogle intero hindent hledger hledger-diff
+
 
