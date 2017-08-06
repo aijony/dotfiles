@@ -108,7 +108,6 @@ values."
      orxtended
      bibtex
      browsing
-     line
      theme
      (notmuch :variables
               notmuch-better-defaults 't
@@ -380,6 +379,8 @@ before packages are loaded. If you are unsure, you should try in setting them in
   (setq-default package-user-dir (file-truename "~/.spacemacs.d/global/elpa/"))
   (setq-default spacemacs-cache-directory (file-truename "~/.spacemacs.d/global/.cache/"))
   (setq-default dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/"))
+  (setq custom-file "~/.spacemacs.d/global/emacs-custom.el")
+  (load custom-file)
   )
 
 
@@ -438,16 +439,3 @@ you (should) place your code here."
 
 )
 
-
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(hi-black-hb ((t (:inherit variable-pitch :weight bold))))
- '(org-latex-and-related ((t nil)))
- '(spaceline-evil-insert ((t (:background "white" :foreground "#3E3D31" :inherit (quote mode-line)))))
- '(spaceline-evil-normal ((t (:background "light gray" :foreground "#3E3D31" :inherit (quote mode-line)))))
- '(spaceline-highlight-face ((t (:background "gray" :foreground "#3E3D31" :inherit (quote mode-line)))))
- '(spacemacs-insert-face ((t (:background "white" :foreground "#434C5E" :inherit (quote mode-line)))))
- '(spacemacs-normal-face ((t (:background "light gray" :foreground "#434C5E" :inherit (quote mode-line))))))
