@@ -1,7 +1,10 @@
 
 ;;Set path for stack
 (add-hook 'eshell-mode-hook '(lambda ()
-                               (eshell/set-path "~/.local/bin")))
+                               (eshell/set-path "~/.local/bin")
+                               (setenv "LEDGER_FILE" (file-truename "~/finance/hledger.journal"))
+                               ))
+
 
 
 (with-eval-after-load 'eshell
@@ -17,5 +20,8 @@
     (eshell/clear)
     (eshell-send-input))
 
+
+  (remove-hook 'eshell-mode-hook 'spacemacs//eshell-switch-company-frontend)
+  (add-hook 'eshell-mode-hook 'spacemacs//eshell-switch-company-frontend t)
 )
 
