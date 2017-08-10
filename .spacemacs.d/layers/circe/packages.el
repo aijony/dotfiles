@@ -1,7 +1,6 @@
-;;; packages.el --- circe layer packages file for Spacemacs.  -*- lexical-binding: t; -*-
+;;; packages.el --- circe layer packages file for Spacemacs.
 ;;
-;; Copyright (c) 2012-2014 Sylvain Benner
-;; Copyright (c) 2014-2016 Sylvain Benner & Contributors
+;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
 ;;
 ;; Author: Chris Barrett <chris.d.barrett@me.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
@@ -9,26 +8,13 @@
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
-
 ;;; Commentary:
-
-;; See the Spacemacs documentation and FAQs for instructions on how to implement
-;; a new layer:
-;;
-;;   SPC h SPC layers RET
-;;
-;;
-;; Briefly, each package to be installed or configured by this layer should be
-;; added to `circe-packages'. Then, for each package PACKAGE:
-;;
-;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `circe/init-PACKAGE' to load and initialize the package.
-
-;; - Otherwise, PACKAGE is already referenced by another spacemacs layer, so
-;;   define the functions `circe/pre-init-PACKAGE' and/or
-;;   `circe/post-init-PACKAGE' to customize the package as it is loaded.
+;; Immense thanks to Chris Barret
+;; https://github.com/chrisbarrett/spacemacs-layers
+;; Most of this package is derived from his work.
 
 ;;; Code:
+
 
 
 (defconst circe-packages
@@ -52,6 +38,23 @@
       (setq circe-format-self-say (concat (propertize ">>>" 'face 'circe-self-say-face) " {body}"))
       (setq circe-prompt-string (concat (propertize ">>>" 'face 'circe-prompt-face) " "))
       (setq circe-highlight-nick-type 'all)
+
+      ;; Keybindings
+      (spacemacs/set-leader-keys "aic" 'circe)
+
+      (dolist (mode circe-modes)
+        (progn
+        (spacemacs/declare-prefix-for-mode mode "mc" "command")
+        (spacemacs/set-leader-keys-for-major-mode mode
+          "r" 'circe-reconnect
+          "R" 'circe-reconnect-all
+          "v" 'circe-version
+          "c n" 'circe-command-NAMES
+          "c q" 'circe-command-QUERY
+          "c h" 'circe-command-HELP
+          "c t" 'circe-command-CHTOPIC 
+          "c s" 'circe-command-SAY
+          )))
 
       ;; Show channel name in prompt.
 
@@ -101,8 +104,24 @@
   (use-package helm
     :defer t
     :config
-    (dolist (mode '(circe-channel-mode circe-query-mode circe-server-mode))
+    (dolist (mode circe-modes)
       (add-to-list 'helm-mode-no-completion-in-region-in-modes mode))))
+
+(defun circe/init-helm-circe ()
+  (use-package helm-circe
+    :defer t
+    :after circe
+    :config
+
+    (dolist (mode circe-modes)
+      (spacemacs/declare-prefix-for-mode mode "mh" "helm")
+      (spacemacs/set-leader-keys-for-major-mode mode
+        "h h" 'helm-circe
+        "h s" 'helm-circe-servers
+        "h q" 'helm-circe-queries
+        "h b" 'helm-circe-by-server
+        "h n" 'helm-circe-new-activity
+        ))))
 
 (defun circe/init-circe-notifications ()
   (use-package circe-notifications
@@ -129,14 +148,20 @@
     (push (lambda (b) (with-current-buffer b (eq major-mode 'circe-mode)))
           persp-filter-save-buffers-functions))
 
-  (spacemacs|define-custom-layout circe-spacemacs-layout-name
-    :binding circe-spacemacs-layout-binding
-    :body
-    (progn
-      (defun spacemacs-layouts/add-circe-buffer-to-persp ()
-        (persp-add-buffer (current-buffer)
-                          (persp-get-by-name
-                           circe-spacemacs-layout-name)))
-      (add-hook 'circe-mode-hook #'spacemacs-layouts/add-circe-buffer-to-persp)
-      (call-interactively 'circe))))
+
+
+   (spacemacs|define-custom-layout circe-spacemacs-layout-name
+     :binding circe-spacemacs-layout-binding
+     :body
+     (progn
+       (defun spacemacs-layouts/add-circe-buffer-to-persp ()
+         (persp-add-buffer (current-buffer)
+                           (persp-get-by-name
+                            circe-spacemacs-layout-name)
+                           ))
+       (add-hook 'circe-mode-hook #'spacemacs-layouts/add-circe-buffer-to-persp)
+       (call-interactively 'circe)))
+
+  )
+
 ;;; packages.el ends here
