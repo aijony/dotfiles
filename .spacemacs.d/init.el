@@ -118,7 +118,6 @@ values."
    ;; packages, then consider creating a layer. You can also put the
    ;; configuration in `dotspacemacs/user-config'.
    dotspacemacs-additional-packages '(
-
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -427,6 +426,8 @@ you (should) place your code here."
 
   (plist-put org-format-latex-options :scale 1.35)
 
+
+  (require 'org-notmuch)
   ;;Babel Language specifics
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((C . t)

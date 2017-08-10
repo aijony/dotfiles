@@ -5,11 +5,11 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 
 
-(setq org-ref-default-bibliography '("~/sync/bibliography/references.bib")
+(setq org-ref-default-bibliography '("~/org/bibliography/references.bib")
       org-ref-pdf-directory
-      "~/sync/bibliography/"
+      "~/org/bibliography/"
       org-ref-bibliography-notes
-      "~/sync/bibliography/notes.org")
+      "~/org/bibliography/notes.org")
 
 (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
                               "bibtex %b" "pdflatex -interaction nonstopmode -output-directory %o %f"
@@ -30,3 +30,13 @@
 (setq org-preview-latex-default-process 'imagemagick)
 
 
+;; Setup org-notmuch
+;; https://notmuchmail.org/emacstips/#index24h2
+
+
+
+(setq org-capture-templates
+      '(("t" "Todo" entry (file+headline "~/org/todo.org" "Tasks")
+         "* TODO %?\n  %i\n  %a")
+        ("j" "Journal" entry (file+datetree "~/org/journal.org")
+         "* %?\nEntered on %U\n  %i\n  %a")))
