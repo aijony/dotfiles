@@ -3,19 +3,14 @@
 ;; Copyright (c) 2012-2017 Sylvain Benner & Contributors
 ;;
 ;; Author: Chris Barrett <chris.d.barrett@me.com>
+;; Author: Aidan Nyquist <contact@aidannyquist.com>
 ;; URL: https://github.com/syl20bnr/spacemacs
 ;;
 ;; This file is not part of GNU Emacs.
 ;;
 ;;; License: GPLv3
-;;; Commentary:
-;; Immense thanks to Chris Barret
-;; https://github.com/chrisbarrett/spacemacs-layers
-;; Most of this package is derived from his work.
 
 ;;; Code:
-
-
 
 (defconst circe-packages
   '(circe
@@ -112,7 +107,7 @@
     :defer t
     :after circe
     :config
-
+    ;; Helm keybindings
     (dolist (mode circe-modes)
       (spacemacs/declare-prefix-for-mode mode "mh" "helm")
       (spacemacs/set-leader-keys-for-major-mode mode
