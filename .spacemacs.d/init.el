@@ -55,7 +55,8 @@ values."
      ruby-on-rails
      ;;Useless
      selectric
-     circe
+     (circe :variables
+            circe-helm-for-username-completion 'nil)
      ;;Languages
      c-c++
      cscope
@@ -98,6 +99,7 @@ values."
      ;;Window Managment
      spacemacs-layouts
      ;;Custom
+     gnus
      eshell
      writing
      lilypond-mode
@@ -395,7 +397,6 @@ you (should) place your code here."
 
   ;;tag
   (setq persp-add-buffer-on-after-change-major-mode t)
-
 
   ;;Good looks
   (setq powerline-default-separator 'arrow)
