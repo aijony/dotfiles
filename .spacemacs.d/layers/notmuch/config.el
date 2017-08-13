@@ -24,7 +24,7 @@ leave the defaults up to notmuch.
 ")
 
 (defvar notmuch-use-sendmail nil
-  "Defines variables to use send mail if t, if
+  "Defines variables to use sendmail if t, if
 a file path is sent, that will be the mail used.
 For example sending /usr/bin/msmtp will use
 msmtp instead of sendmail.
