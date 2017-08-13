@@ -67,7 +67,7 @@
                                  (mapcar (lambda (id)
                                            (split-string (shell-command-to-string
                                                           (concat "notmuch search --output:tags id:"
-                                                                                          id))))
+                                                                  id))))
                                          ids))))
 
     (let* ((ids (get-ids org-notmuch-email-link org-notmuch-email-regexp))
