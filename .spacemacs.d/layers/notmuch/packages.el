@@ -38,6 +38,11 @@
 
          ;; Applies settings described by `notmuch-better-wash'
          ;; TODO implement `cl-letf'
+         (if notmuch-better-wash
+             (setq
+              notmuch-wash-signature-regexp (notmuch/list-to-regexp notmuch-hide-text-signature)
+              notmuch-wash-citation-regexp (notmuch/list-to-regexp notmuch-hide-text-at)
+              notmuch-wash-original-regexp (notmuch/list-to-regexp notmuch-hide-text-below)))
 
          ;; Applies setting described by `notmuch-sensible-defaults'
          (if notmuch-sensible-defaults
