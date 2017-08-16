@@ -394,7 +394,7 @@ explicitly specified that a variable should be set before a package is loaded,
 you (should) place your code here."
 
   ;;These secrets have yet to be revealed.
-  (load "~/.irc.el")
+  (load "~/.private.el")
 
   ;;tag
   (setq persp-add-buffer-on-after-change-major-mode t)
