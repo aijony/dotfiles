@@ -6,90 +6,117 @@
 ;;; License: GPLv3
 ;; github:mullr
 
-(setq notmuch-packages '((notmuch :location site)))
+(setq notmuch-packages '(
+                         ;; helm-notmuch
+                         ;; notmuch-labeler
+                         persp-mode
+                         (notmuch :location site)))
 
 
 (defun notmuch/init-notmuch () "Initialize notmuch"
-  (use-package notmuch
-    :defer t
-    :commands notmuch
-    :config
+       (use-package notmuch
+         :defer t
+         :commands notmuch
+         :config
 
-    ;; See https://github.com/syl20bnr/spacemacs/issues/6681
-    (push "\\*notmuch.+\\*" spacemacs-useful-buffers-regexp)
+         ;; See https://github.com/syl20bnr/spacemacs/issues/6681
+         (push "\\*notmuch.+\\*" spacemacs-useful-buffers-regexp)
 
-    ;; Fix helm
-    ;; See id:m2vbonxkum.fsf@guru.guru-group.fi
-    (setq notmuch-address-selection-function
-          (lambda (prompt collection initial-input)
-            (completing-read
-             prompt (cons initial-input collection) nil t nil 'notmuch-address-history)))
+         ;; This fixes helm
+         ;; See id:m2vbonxkum.fsf@guru.guru-group.fi
+         (setq notmuch-address-selection-function
+               (lambda (prompt collection initial-input)
+                 (completing-read
+                  prompt (cons initial-input collection) nil t nil 'notmuch-address-history)))
 
-    ;;Evilify the default notmuch modes
-    (dolist (mode notmuch-evilify-mode-list)
-      (evil-set-initial-state mode 'evilified))
+         ;; Applies setting described by `notmuch-clean-defaults'
+         (if notmuch-clean-defaults
+             (setq
+              notmuch-message-headers nil
+              notmuch-wash-citation-lines-prefix 0
+              notmuch-wash-citation-lines-suffix 0))
 
-    ;;Applies setting described by `notmuch-clean-defaults'
-    (if notmuch-clean-defaults
-        (setq
-          notmuch-message-headers 'nil
-          notmuch-wash-citation-lines-prefix 0
-          notmuch-wash-citation-lines-suffix 0))
+         ;; Applies settings described by `notmuch-better-wash'
+         ;; TODO implement `cl-letf'
 
-    ;;Applies settings described by `notmuch-better-wash'
-    (if notmuch-better-wash
-        (setq
-         notmuch-wash-signature-regexp (notmuch/list-to-regexp notmuch-hide-text-signature)
-         notmuch-wash-citation-regexp (notmuch/list-to-regexp notmuch-hide-text-at)
-         notmuch-wash-original-regexp (notmuch/list-to-regexp notmuch-hide-text-below)))
+         ;; Applies setting described by `notmuch-sensible-defaults'
+         (if notmuch-sensible-defaults
+             (setq message-interactive nil
+                   notmuch-search-oldest-first nil))
 
-    ;;Applies setting described by `notmuch-sensible-defaults'
-    (if notmuch-sensible-defaults
-        (setq notmuch-search-oldest-first nil))
+         ;; Applies settings described by `notmuch-use-sendmail'
+         (if notmuch-use-sendmail
+             (progn
+               (setq message-send-mail-function 'message-send-mail-with-sendmail
+                     send-mail-function 'sendmail-send-it)
+               ;; Checks if arg is more than bool and assumes string
+               (if (not (eq notmuch-use-sendmail t))
+                   (setq sendmail-program notmuch-use-sendmail))))
 
-    ;;Applies settings described by `notmuch-use-sendmail'
-    (if notmuch-use-sendmail
-        (progn
-          (setq message-send-mail-function 'message-send-mail-with-sendmail)
-          ;; Checks if arg is more than bool and assumes string
-          (if (eq notmuch-use-sendmail t)
-              (setq sendmail-program notmuch-use-sendmail))))
+         ;; Dynamic evil-states based off of text property
+         (add-hook
+          'notmuch-hello-mode-hook
+          (lambda ()
+            (add-hook
+             'post-command-hook
+             (lambda ()
+               (let (
+                     ;; Everything else that isn't `editable' for notmuch-hello should be read-only
+                     (editable (get-char-property (point) 'field))
+                     (is-evilified (string= evil-state "evilified"))
+                     (is-normal (string= evil-state "normal"))
+                     (is-insert (string= evil-state "insert")))
+                 (cond ((and is-evilified editable)
+                        (evil-normal-state))
+                       ((and (or is-normal is-insert) (not editable))
+                        (evil-evilified-state)))))
+             nil t)))
 
-
-    ;;TODO find a better way
-    (with-eval-after-load 'notmuch
-
-    (notmuch/switch-keys notmuch-common-keymap (kbd "j") (kbd ";"))
-    (notmuch/switch-keys notmuch-common-keymap (kbd "G") (kbd "C-g"))
-    (notmuch/switch-keys notmuch-hello-mode-map (kbd "v") (kbd "C-v"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "")(kbd ""))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "v")(kbd "C-v"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "V")(kbd "C-V"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "a")(kbd "o"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "A")(kbd "O"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "n")(kbd "J"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "N")(kbd "H"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "p")(kbd "K"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "P")(kbd "L"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "k")(kbd ":"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "SPC")(kbd "C-L"))
-    (notmuch/switch-keys notmuch-tree-mode-map (kbd "DEL")(kbd "C-H"))
-    (notmuch/switch-keys notmuch-search-mode-map (kbd "SPC")(kbd "C-L"))
-    (notmuch/switch-keys notmuch-search-mode-map (kbd "DEL")(kbd "C-H"))
-    (notmuch/switch-keys notmuch-search-mode-map (kbd "n")(kbd "J"))
-    (notmuch/switch-keys notmuch-search-mode-map (kbd "p")(kbd "K"))
-    (notmuch/switch-keys notmuch-search-mode-map (kbd "l")(kbd "\""))
-    (notmuch/switch-keys notmuch-search-mode-map (kbd "k")(kbd ":"))
-    (notmuch/switch-keys notmuch-search-mode-map (kbd "a")(kbd "o"))
-    (notmuch/switch-keys notmuch-show-mode-map (kbd "SPC")(kbd "C-L"))
-    (notmuch/switch-keys notmuch-show-mode-map (kbd "n")(kbd "J"))
-    (notmuch/switch-keys notmuch-show-mode-map (kbd "p")(kbd "K"))
-    (notmuch/switch-keys notmuch-show-mode-map (kbd "l")(kbd "\""))
-    (notmuch/switch-keys notmuch-show-mode-map (kbd "k")(kbd ":"))
-    (notmuch/switch-keys notmuch-show-mode-map (kbd "a")(kbd "o"))
-)))
+         ;; Evilify the default notmuch modes
+         (dolist (mode notmuch-evilify-mode-list)
+           (evil-set-initial-state mode 'evilified))
 
 
+         (spacemacs/set-leader-keys "a n" 'notmuch)
+
+         ;; TODO Don't use eval-after-load (maybe)
+         (with-eval-after-load 'notmuch
+           (notmuch/switch-keys notmuch-common-keymap (kbd "j") (kbd ";"))
+           (notmuch/switch-keys notmuch-common-keymap (kbd "G") (kbd "C-g"))
+           (notmuch/switch-keys notmuch-hello-mode-map (kbd "v") (kbd "C-v"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "")(kbd ""))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "v")(kbd "C-v"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "V")(kbd "C-V"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "a")(kbd "o"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "A")(kbd "O"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "n")(kbd "J"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "N")(kbd "H"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "p")(kbd "K"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "P")(kbd "L"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "k")(kbd ":"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "SPC")(kbd "C-L"))
+           (notmuch/switch-keys notmuch-tree-mode-map (kbd "DEL")(kbd "C-H"))
+           (notmuch/switch-keys notmuch-search-mode-map (kbd "SPC")(kbd "C-L"))
+           (notmuch/switch-keys notmuch-search-mode-map (kbd "DEL")(kbd "C-H"))
+           (notmuch/switch-keys notmuch-search-mode-map (kbd "n")(kbd "J"))
+           (notmuch/switch-keys notmuch-search-mode-map (kbd "p")(kbd "K"))
+           (notmuch/switch-keys notmuch-search-mode-map (kbd "l")(kbd "\""))
+           (notmuch/switch-keys notmuch-search-mode-map (kbd "k")(kbd ":"))
+           (notmuch/switch-keys notmuch-search-mode-map (kbd "a")(kbd "o"))
+           (notmuch/switch-keys notmuch-show-mode-map (kbd "SPC")(kbd "C-L"))
+           (notmuch/switch-keys notmuch-show-mode-map (kbd "n")(kbd "J"))
+           (notmuch/switch-keys notmuch-show-mode-map (kbd "p")(kbd "K"))
+           (notmuch/switch-keys notmuch-show-mode-map (kbd "l")(kbd "\""))
+           (notmuch/switch-keys notmuch-show-mode-map (kbd "k")(kbd ":"))
+           (notmuch/switch-keys notmuch-show-mode-map (kbd "a")(kbd "o"))
+           )))
+
+(defun notmuch/post-init-persp-mode ()
+
+  (spacemacs|define-custom-layout notmuch-spacemacs-layout-name
+    :binding notmuch-spacemacs-layout-binding
+    :body
+    (call-interactively 'notmuch)))
 
 
 ;; (progn
@@ -150,8 +177,8 @@
 ;;                                                                   nil
 ;;                                                                   'notmuch-address-history)))
 
-;;       ;;(spacemacs/declare-prefix-for-mode 'notmuch-show-mode "n" "notmuch")
-;;       ;;(spacemacs/declare-prefix-for-mode 'notmuch-show-mode "n." "MIME parts")
+;;       ;; (spacemacs/declare-prefix-for-mode 'notmuch-show-mode "n" "notmuch")
+;;       ;; (spacemacs/declare-prefix-for-mode 'notmuch-show-mode "n." "MIME parts")
 
 ;;       (evilified-state-evilify-map 'notmuch-hello-mode-map
 ;;         :mode notmuch-hello-mode)

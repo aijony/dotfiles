@@ -38,6 +38,12 @@ msmtp instead of sendmail.
                                   ;; notmuch-message-mode
                                   ))
 
+(defvar notmuch-spacemacs-layout-name "@notmuch"
+  "Name used in the setup for `spacemacs-layouts' micro-state")
+
+(defvar notmuch-spacemacs-layout-binding "n"
+  "Binding used in the setup for `spacemacs-layouts' micro-state")
+
 
 (defvar notmuch-hide-text-signature '("^-- ?"
                                       "^_+$")
