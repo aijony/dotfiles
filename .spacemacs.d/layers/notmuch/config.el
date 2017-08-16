@@ -1,8 +1,7 @@
 
 (defvar notmuch-better-defaults nil
  "Sets `notmuch-clean-defaults', `notmuch-sensible-defaults'
-, and `notmuch-better-wash'. It doesn't override")
-
+, and `notmuch-better-wash'. It doesn't override.")
 
 (defvar notmuch-clean-defaults notmuch-better-defaults
   "Removes moves headers,
@@ -12,7 +11,9 @@ for detecting false positives.
 However, context can usually be enough.")
 
 (defvar notmuch-sensible-defaults notmuch-better-defaults
-  "Orders searches so most recent appears at the top.")
+  "Orders searches so most recent appears at the top.
+Sends mail without hanging Emacs, or displaying errors,
+see: `message-interactive'.")
 
 (defvar notmuch-better-wash notmuch-better-defaults
   "Notmuch will hide citations and signatures automatically.
@@ -25,12 +26,12 @@ leave the defaults up to notmuch.
 
 (defvar notmuch-use-sendmail nil
   "Defines variables to use sendmail if t, if
-a file path is sent, that will be the mail used.
+a file path is sent, that will be the program used.
 For example sending /usr/bin/msmtp will use
 msmtp instead of sendmail.
  ")
 
-;;List of default notmuch modes that will become evilifed.
+;; List of default notmuch modes that will become evilifed.
 (setq notmuch-evilify-mode-list '(notmuch-hello-mode
                                   notmuch-search-mode
                                   notmuch-show-mode
@@ -62,7 +63,7 @@ Default citation regexp manually derived from default
 The parent variable is unlikely to change on notmuch's side.
 All text matching will be hidden.
 Feel free to add or remove regexp from this list.
-It is automatically properly concatenated in ")
+It is automatically properly concatenated with `notmuch-list-to-regexp'")
 
 (defvar notmuch-hide-text-below '("--+\s?[oO]riginal [mM]essage\s?--+"
                                   "From: .*\nSent: .*"
@@ -74,6 +75,6 @@ The parent variable is unlikely to change on notmuch's side.
 All text below matches will be hidden.
 This layer has been extended  to recognize more common signatures.
 Feel free to add or remove regexp from this list.
-It is automatically properly concatenated in ")
+It is automatically properly concatenated with `notmuch-list-to-regexp' ")
 
 
