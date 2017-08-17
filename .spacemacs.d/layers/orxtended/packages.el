@@ -48,6 +48,8 @@
 
 (setq orxtended-packages '(org-plus-contrib
                            org-gcal
+                           (org-protocol :location built-in)
+                           (ob-latex :location built-in)
                            (ox-extra :location local)))
 
 ;; For each extension, define a function orxtended/init-<extension-orxtended>
@@ -74,9 +76,11 @@
     (add-hook 'org-capture-after-finalize-hook (lambda () (org-gcal-sync)))
     ))
 
-(defun orxtended/post-init-org-plus-contrib ()
+(defun orxtended/init-ob-latex ()
+  (use-package ob-latex
+    :defer t))
 
-  (require 'ob-latex)
+(defun orxtended/post-init-org-plus-contrib ()
 
   (add-hook 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
 
@@ -96,8 +100,11 @@
   (setq org-preview-latex-default-process 'imagemagick)
 
   (setq org-tags-column 0)
+
+  ;; Not sure what this did, but it doesn't work...
+  ;;(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
+
   ;; Show images when opening a file.
-  (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
   (setq org-latex-create-formula-image-program
         'dvipng)
   ;; Do not confirm before evaluation
@@ -120,7 +127,15 @@
     "s R" 'orxtended/org-refile-to-datetree
     "s a" 'org-archive-to-archive-sibling
     )
-)
+ )
+
+(defun orxtended/init-org-protocol ()
+  (use-package org-protocol
+    :defer t
+    :commands (org-protocol-capture org-protocol-create) ;; this adds autoloads
+    :init
+    (evil-leader/set-key-for-mode 'org-mode
+      "mp" 'org-protocol-capture)))
 
 
 
