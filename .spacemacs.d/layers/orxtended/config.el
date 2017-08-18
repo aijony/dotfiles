@@ -27,21 +27,20 @@
 
 
 (setq org-todo-keywords
-      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)")
+      (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "GOOD(g)")
               (sequence "WAITING(w@/!)" "HOLD(h)" "|" "CANCELLED(c@/!)" "DEAD"))))
-
 
 (setq org-capture-templates
       '(
+        ("w" "Default template" entry (file+headline "~/org/refile.org" "Notes")
+        "* %^{Title}\n\n  Source: %u, %c\n\n  %i" :empty-lines 1)
+
         ;; Syncs with google calender
         ("c" "calendar" entry (file  "~/org/cal.org" )
          "* %?\n\n%^T\n\n:PROPERTIES:\n\n:END:\n\n")
 
         ("j" "journal" entry (file+datetree "~/org/journal.org")
          "* %?\n%U\n")
-
-        ("?" "weblink" entry (file "~/org/bookmarks.org")
-         "* %:description  Source: %u, %c  %:initial" :empty-lines 1)
 
         ("t" "todo" entry (file "~/org/refile.org")
          "* TODO %^{Description} %^G %i%?")
@@ -71,6 +70,10 @@
 %(format-time-string \"%<<%Y-%m-%d %a .+1d/3d>>\")
 \n:PROPERTIES:\n:STYLE: habit\n:REPEAT_TO_STATE: NEXT\n:END:\n")
 
+
+        ("l" "Temp Links from the interwebs" item
+         (file+headline "links.org" "Temporary Links")
+         "%?\nEntered on %U\n \%i\n %a")
         ))
 
 

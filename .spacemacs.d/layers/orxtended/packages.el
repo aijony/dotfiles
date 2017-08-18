@@ -49,6 +49,7 @@
 (setq orxtended-packages '(org-plus-contrib
                            org-gcal
                            (org-protocol :location built-in)
+                           (org-crypt :location built-in)
                            (ob-latex :location built-in)
                            (ox-extra :location local)))
 
@@ -127,15 +128,45 @@
     "s R" 'orxtended/org-refile-to-datetree
     "s a" 'org-archive-to-archive-sibling
     )
- )
+  )
 
 (defun orxtended/init-org-protocol ()
   (use-package org-protocol
     :defer t
     :commands (org-protocol-capture org-protocol-create) ;; this adds autoloads
     :init
+    (require 'org-protocol)
+
+    ;;; Org Capture
+    ;;;; Thank you random guy from StackOverflow
+    ;;;; http://stackoverflow.com/questions/23517372/hook-or-advice-when-aborting-org-capture-before-template-selection
+
+    (defadvice org-capture
+        (after make-full-window-frame activate)
+      "Advise capture to be the only window when used as a popup"
+      (if (equal "emacs-capture" (frame-parameter nil 'name))
+          (delete-other-windows)))
+
+    (defadvice org-capture-finalize
+        (after delete-capture-frame activate)
+      "Advise capture-finalize to close the frame"
+      (if (equal "emacs-capture" (frame-parameter nil 'name))
+          (delete-frame)))
+
+
     (evil-leader/set-key-for-mode 'org-mode
       "mp" 'org-protocol-capture)))
+
+(defun orxtended/init-org-crypt ()
+  (use-package org-crypt
+    :init
+    (require 'org-crypt)
+    (org-crypt-use-before-save-magic)
+    (setq org-tags-exclude-from-inheritance (quote ("crypt")))
+    ;; GPG key to use for encryption
+    ;; Either the Key ID or set to nil to use symmetric encryption.
+    (setq org-crypt-key nil)
+    ))
 
 
 
