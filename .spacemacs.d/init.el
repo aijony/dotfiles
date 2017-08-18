@@ -54,6 +54,7 @@ values."
      ;;Frameworks
      ruby-on-rails
      ;;Useless
+     asp
      selectric
      (circe :variables
             circe-helm-for-username-completion 'nil)
