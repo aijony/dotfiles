@@ -43,6 +43,34 @@ is nil, refile in the current file."
     )
   )
 
+
+;;; https://emacs.stackexchange.com/questions/3280/orgmode-insert-link-from-clipboard
+
+(defun orxtended/insert-url-as-org-link-sparse ()
+  "If there's a URL on the clipboard, insert it as an org-mode
+link in the form of [[url]]."
+  (interactive)
+  (let ((link (substring-no-properties (x-get-selection 'CLIPBOARD)))
+        (url  "\\(http[s]?://\\|www\\.\\)"))
+    (save-match-data
+      (if (string-match url link)
+          (insert (concat "[[" link "]]"))
+        (error "No URL on the clipboard")))))
+
+(defun orxtended/insert-url-as-org-link-fancy ()
+  "If there's a URL on the clipboard, insert it as an org-mode
+link in the form of [[url][*]], and leave point at *."
+  (interactive)
+  (let ((link (substring-no-properties (x-get-selection 'CLIPBOARD)))
+        (url  "\\(http[s]?://\\|www\\.\\)"))
+    (save-match-data
+      (if (string-match url link)
+          (progn
+            (insert (concat "[[" link "][]]"))
+            (backward-char 2))
+        (error "No URL on the clipboard")))))
+
+
 (setq org-notmuch-tag-whitelist 'nil)
 (setq org-notmuch-tag-blacklist '("inbox" "unread" "attachment"))
 (setq org-notmuch-conversion '(("flagged" . "important") ("test" . "tested")))

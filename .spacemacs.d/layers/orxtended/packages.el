@@ -48,6 +48,7 @@
 
 (setq orxtended-packages '(org-plus-contrib
                            org-gcal
+                           org-cliplink
                            (org-protocol :location built-in)
                            (org-crypt :location built-in)
                            (ob-latex :location built-in)
@@ -60,6 +61,12 @@
     :config
     ;; TODO Verify keybindings
     (ox-extras-activate '(ignore-headlines))))
+
+(defun orxtended/init-org-cliplink ()
+  (use-package org-cliplink)
+  (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "i L" 'orxtended/insert-url-as-org-link-fancy)
+  )
 
 (defun orxtended/init-org-gcal ()
   "Initialize org-gcal"
