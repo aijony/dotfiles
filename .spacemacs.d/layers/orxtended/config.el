@@ -1,7 +1,6 @@
 ;;(setq org-reveal-root "file:///home/aidan/.spacemacs.d/private/resources/reveal-js")
 
 
-
 (defvar org-export-output-directory-prefix "export" "prefix of directory used for org-mode export")
 
 (setq org-ref-default-bibliography '("~/org/bibliography/references.bib")
@@ -11,7 +10,7 @@
       "~/org/bibliography/notes.org")
 
 (setq org-agenda-files (list "~/org/cal.org"
-                             "~/org/todo.org"
+                             "~/org/main.org"
                              "~/org/agenda.org"
                              "~/org/refile.org"
                              "~/org/swedemom.org"))
