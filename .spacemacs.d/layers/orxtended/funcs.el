@@ -1,3 +1,13 @@
+
+(defadvice org-export-output-file-name (before org-add-export-dir activate)
+  "Modifies org-export to place exported files in a different directory
+https://emacs.stackexchange.com/questions/3985/make-org-mode-export-to-beamer-keep-temporary-files-out-of-the-current-directory"
+  (when (not pub-dir)
+    (setq pub-dir org-export-output-directory-prefix)
+    (when (not (file-directory-p pub-dir))
+      (make-directory pub-dir))))
+
+
 (defun orxtended/transparentize ()
   (interactive)
   (if (not (string-match "ImageMagick" (shell-command-to-string "convert -version")))
@@ -9,7 +19,6 @@
                                 file)))
           (shell-command-to-string command))
         (setq to-change (cdr to-change))))))
-
 
 (defun orxtended/after-babel ()
   (interactive)

@@ -46,7 +46,8 @@
 ;;   define the functions `orxtended/pre-init-PACKAGE' and/or
 ;;   `orxtended/post-init-PACKAGE' to customize the package as it is loaded.
 
-(setq orxtended-packages '(org-plus-contrib
+(setq orxtended-packages '(
+                           (org :location built-in)
                            org-gcal
                            org-cliplink
                            (org-protocol :location built-in)
@@ -88,54 +89,76 @@
   (use-package ob-latex
     :defer t))
 
-(defun orxtended/post-init-org-plus-contrib ()
+(defun orxtended/post-init-org ()
 
+  ;; Hooks
   (add-hook 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
-
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+  (add-hook 'org-babel-after-execute-hook 'orxtended/after-babel)
+  ;; Not sure what this did, but it doesn't work...
+  ;; (add-hook 'org-mode-hook 'turn-on-org-cdlatex)
 
   (setq org-treat-S-cursor-todo-selection-as-state-change nil)
 
-  ;; Show images after evaluating code blocks.
-  (setq org-startup-with-inline-images t)
+  ;; Org Startup
+  (setq org-startup-with-latex-preview t
+        org-startup-with-inline-images t
+        org-startup-align-all-tables t
+        org-startup-indented t
+        org-startup-truncated t
+        org-pretty-entities t
+        org-pretty-entities-include-sub-superscripts t
+        org-footnote-define-inline t
+        )
 
-  (add-hook 'org-babel-after-execute-hook 'orxtended/after-babel)
+  ;; https://github.com/purcell/emacs.d/blob/c0b36ccd87f660cde1b6caa692a3195a24c3ce3c/lisp/init-org.el#L10-L22
+  ;; Various settings
+  (setq
+   ;; org-archive-mark-done nil
+   ;; org-fast-tag-selection-single-key 'expert
+   ;; org-export-kill-product-buffer-when-displayed t
+   ;; org-tags-column 80
+   ;; org-log-done t
+   org-edit-timestamp-down-means-later t
+   org-hide-emphasis-markers t
+   org-catch-invisible-edits 'show
+   org-export-coding-system 'nil
+   org-html-validation-link nil)
 
-  (setq org-startup-with-latex-preview t)
+  ;; Latex
+  (setq
+   ;; Show images after evaluating code blocks.
+   org-startup-with-inline-images t
+   org-latex-listings t
+   org-preview-latex-default-process 'imagemagick)
 
-  (setq org-latex-listings t)
+   ;; ;; I have no clue why this is here...
+   ;; (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
+   ;;                               "bibtex %b" "pdflatex -interaction nonstopmode -output-directory %o %f"
+   ;;                               "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
-  (setq org-preview-latex-default-process 'imagemagick)
+   ;; Show images when opening a file.
+   (setq org-latex-create-formula-image-program
+         'dvipng)
 
-  (setq org-tags-column 0)
-
-  ;; Not sure what this did, but it doesn't work...
-  ;;(add-hook 'org-mode-hook 'turn-on-org-cdlatex)
-
-  ;; Show images when opening a file.
-  (setq org-latex-create-formula-image-program
-        'dvipng)
-  ;; Do not confirm before evaluation
-  (setq org-confirm-babel-evaluate nil)
-
-  (setq org-refile-use-outline-path 'file)
-
-  (setq org-outline-path-complete-in-steps nil)
-
-  (setq org-refile-allow-creating-parent-nodes 'confirm)
+  ;; Babel
+  (setq
+   org-confirm-babel-evaluate nil
+   org-export-babel-evaluate nil)
 
 
+  ;; Refile
+  (setq org-refile-targets '((nil :maxlevel . 9)
+                             (org-agenda-files :maxlevel . 9)))
 
-  ;; Do not evaluate code blocks when exporting.
-  (setq org-export-babel-evaluate nil)
+  (setq org-refile-use-outline-path 'file
+        org-outline-path-complete-in-steps nil
+        org-refile-allow-creating-parent-nodes 'confirm)
 
-
-
+  ;; Keybindings
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
     "s R" 'orxtended/org-refile-to-datetree
-    "s a" 'org-archive-to-archive-sibling
-    )
-  )
+    "s a" 'org-archive-to-archive-sibling))
 
 (defun orxtended/init-org-protocol ()
   (use-package org-protocol
@@ -148,17 +171,17 @@
     ;;;; Thank you random guy from StackOverflow
     ;;;; http://stackoverflow.com/questions/23517372/hook-or-advice-when-aborting-org-capture-before-template-selection
 
-    (defadvice org-capture
-        (after make-full-window-frame activate)
-      "Advise capture to be the only window when used as a popup"
-      (if (equal "emacs-capture" (frame-parameter nil 'name))
-          (delete-other-windows)))
+    ;; (defadvice org-capture
+    ;;     (after make-full-window-frame activate)
+    ;;   "Advise capture to be the only window when used as a popup"
+    ;;   (if (equal "emacs-capture" (frame-parameter nil 'name))
+    ;;       (delete-other-windows)))
 
-    (defadvice org-capture-finalize
-        (after delete-capture-frame activate)
-      "Advise capture-finalize to close the frame"
-      (if (equal "emacs-capture" (frame-parameter nil 'name))
-          (delete-frame)))
+    ;; (defadvice org-capture-finalize
+    ;;     (after delete-capture-frame activate)
+    ;;   "Advise capture-finalize to close the frame"
+    ;;   (if (equal "emacs-capture" (frame-parameter nil 'name))
+    ;;       (delete-frame)))
 
 
     (evil-leader/set-key-for-mode 'org-mode

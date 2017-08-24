@@ -2,6 +2,7 @@
 
 
 
+(defvar org-export-output-directory-prefix "export" "prefix of directory used for org-mode export")
 
 (setq org-ref-default-bibliography '("~/org/bibliography/references.bib")
       org-ref-pdf-directory
@@ -14,17 +15,6 @@
                              "~/org/agenda.org"
                              "~/org/refile.org"
                              "~/org/swedemom.org"))
-
-(setq org-refile-targets '(
-                           (nil :maxlevel . 9)
-                           (org-agenda-files :maxlevel . 9)
-                           ))
-
-
-(setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
-                              "bibtex %b" "pdflatex -interaction nonstopmode -output-directory %o %f"
-                              "pdflatex -interaction nonstopmode -output-directory %o %f"))
-
 
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "GOOD(g)")
