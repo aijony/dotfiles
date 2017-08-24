@@ -44,7 +44,7 @@ values."
             shell-default-shell 'eshell
             shell-default-height
             30 shell-default-position 'bottom)
-     semantic
+     (semantic :disabled-for emacs-lisp)
      speed-reading
      spell-checking
      theming
@@ -70,7 +70,7 @@ values."
               )
      go
      html
-     ipython-notebook
+     ;; ipython-notebook
      java
      javascript
      latex
