@@ -112,6 +112,7 @@ values."
      bibtex
      browsing
      theme
+     ob-ipython
      (notmuch :variables
               notmuch-better-defaults 't
               notmuch-use-sendmail 't)
@@ -375,7 +376,6 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
- 
 
 
   (setq-default dotspacemacs-startup-banner 'nil)
@@ -434,8 +434,10 @@ you (should) place your code here."
   ;;Babel Language specifics
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((C . t)
+                                 (emacs-lisp . t)
                                  (latex . t)
                                  (python . t)
+                                 (ipython . t)
                                  (sagemath . t)
                                  (haskell . t)
                                  (org . t)))

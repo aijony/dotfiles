@@ -61,7 +61,48 @@
   (use-package ox-extra
     :config
     ;; TODO Verify keybindings
-    (ox-extras-activate '(ignore-headlines))))
+    (ox-extras-activate '(ignore-headlines))
+
+
+    ;; * Journal templates
+    ;; Bare-bones template
+    (add-to-list 'org-latex-classes
+                 '("no-article"
+                   "\\documentclass{article}
+                   [NO-DEFAULT-PACKAGES]
+                   [PACKAGES]
+                   [EXTRA]"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*a{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+    (add-to-list 'org-latex-classes
+                 '("amsmath"
+                   "\\documentclass{amsmath}
+                   [NO-DEFAULT-PACKAGES]
+                   [PACKAGES]
+                   [EXTRA]"
+                   ("\\section{%s}" . "\\section*{%s}")
+                   ("\\subsection{%s}" . "\\subsection*a{%s}")
+                   ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                   ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                   ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+    ;; ** <<APS journals>>
+    (add-to-list 'org-latex-classes '("revtex4-1"
+                                      "\\documentclass{revtex4-1}
+                                      [NO-DEFAULT-PACKAGES]
+                                      [PACKAGES]
+                                      [EXTRA]"
+                                      ("\\section{%s}" . "\\section*{%s}")
+                                      ("\\subsection{%s}" . "\\subsection*{%s}")
+                                      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                                      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
+
+    ))
+
 
 (defun orxtended/init-org-cliplink ()
   (use-package org-cliplink)
@@ -132,19 +173,23 @@
    org-latex-listings t
    org-preview-latex-default-process 'imagemagick)
 
-   ;; ;; I have no clue why this is here...
-   ;; (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
-   ;;                               "bibtex %b" "pdflatex -interaction nonstopmode -output-directory %o %f"
-   ;;                               "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;; I have no clue why this is here...
+  ;;(setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
+  ;;                              "bibtex %b" "pdflatex -interaction nonstopmode -output-directory %o %f"
+  ;;                              "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
-   ;; Show images when opening a file.
-   (setq org-latex-create-formula-image-program
-         'dvipng)
+  ;; Makes the font the wrong freakin color
+  ;;(setq org-latex-create-formula-image-program
+  ;;      'dvipng)
 
   ;; Babel
   (setq
    org-confirm-babel-evaluate nil
-   org-export-babel-evaluate nil)
+   ;; Over-rides :export none
+   org-export-babel-evaluate t)
+
+  ;; display/update images in the buffer after I evaluate
+  ;;(add-hook 'org-babel-after-execute-hook 'org-display-inline-images 'append)
 
 
   ;; Refile
