@@ -9,6 +9,12 @@
       org-ref-bibliography-notes
       "~/org/bibliography/notes.org")
 
+(setq reftex-default-bibliography 
+      '("~/org/bibliography/references.bib"))
+
+(setq reftex-bibpath-environment-variables
+      '("~/org/bibliography/references"))
+
 (setq org-agenda-files (list "~/org/cal.org"
                              "~/org/main.org"
                              "~/org/agenda.org"

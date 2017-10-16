@@ -173,10 +173,11 @@
    org-latex-listings t
    org-preview-latex-default-process 'imagemagick)
 
-  ;; I have no clue why this is here...
-  ;;(setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
-  ;;                              "bibtex %b" "pdflatex -interaction nonstopmode -output-directory %o %f"
-  ;;                              "pdflatex -interaction nonstopmode -output-directory %o %f"))
+  ;; This is what makes bibtex work
+  (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
+                                "bibtex %b"
+                                "pdflatex -interaction nonstopmode -output-directory %o %f"
+                                "pdflatex -interaction nonstopmode -output-directory %o %f"))
 
   ;; Makes the font the wrong freakin color
   ;;(setq org-latex-create-formula-image-program
