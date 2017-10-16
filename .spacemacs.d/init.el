@@ -118,6 +118,11 @@ values."
      (notmuch :variables
               notmuch-better-defaults 't
               notmuch-use-sendmail 't)
+     pretty
+     erc
+     (rcirc :variables
+            rcirc-enable-znc-support t
+            rcirc-spacemacs-layout-binding "r")
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
