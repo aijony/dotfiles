@@ -33,6 +33,8 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     spotify
+     graphviz
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press <SPC f e R> (Vim style) or
@@ -124,6 +126,8 @@ values."
    dotspacemacs-additional-packages '(
                                       suggest
                                       shakespeare-mode
+                                      fireplace
+                                      decide
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
