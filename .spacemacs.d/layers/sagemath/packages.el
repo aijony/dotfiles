@@ -92,7 +92,8 @@
         "w" 'sage-shell:copy-previous-output-to-kill-ring
         "hh" 'helm-sage-complete
         )
-      (evil-define-key 'insert 'sage-shell-mode-map (kbd "tab") 'helm-sage-complete)
+
+      ;; (evil-define-key 'insert 'sage-shell-mode-map (kbd "tab") 'helm-sage-complete)
       ;; Enable setting of executable
       (setq sage-shell:completion-function 'helm-sage)
       (spacemacs/set-leader-keys-for-major-mode 'sage-shell:sage-mode
