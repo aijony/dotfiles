@@ -132,6 +132,7 @@
 
 (defun orxtended/post-init-org ()
 
+
   ;; Hooks
   (add-hook 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
   (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
@@ -203,6 +204,9 @@
 
   ;; Keybindings
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
+    "s x" 'org-cut-subtree
+    "s p" 'org-paste-subtree
+    "s y" 'org-copy-subtree
     "s R" 'orxtended/org-refile-to-datetree
     "s a" 'org-archive-to-archive-sibling))
 
