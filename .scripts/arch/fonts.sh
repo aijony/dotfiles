@@ -1,5 +1,6 @@
 #!/bin/sh
 
+sudo pacman -S adobe-source-code-pro-fonts 
 
 mkdir ~/.local/share/fonts/
 

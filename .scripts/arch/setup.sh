@@ -14,4 +14,5 @@ stack setup
 
 stack install apply-refact hlint stylish-haskell hasktags hoogle intero hindent hledger hledger-diff
 
+sudo npm i tern -g
 
