@@ -13,7 +13,7 @@
                          (notmuch :location site)))
 
 
-(defun notmuch/init-notmuch () "Initialize notmuch"
+(defun notmuch/init-notmuch ()
        (use-package notmuch
          :defer t
          :commands notmuch
@@ -80,7 +80,6 @@
          ;; Evilify the default notmuch modes
          (dolist (mode notmuch-evilify-mode-list)
            (evil-set-initial-state mode 'evilified))
-
 
          (spacemacs/set-leader-keys "a n" 'notmuch)
 
