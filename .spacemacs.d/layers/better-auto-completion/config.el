@@ -42,7 +42,7 @@
 
 ;; YCMD
 
-(add-hook 'after-init-hook #'global-ycmd-mode)
+;; (add-hook 'after-init-hook #'global-ycmd-mode)
 
 ;;Safe command for .dir-locals.el
 (put 'helm-make-build-dir 'safe-local-variable
