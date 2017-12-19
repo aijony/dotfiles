@@ -6,14 +6,14 @@
 ;;; License: GPLv3
 ;; github:mullr
 
-(setq notmuch-packages '(
+(setq notmuch-personal-packages '(
                          ;; helm-notmuch
                          ;; notmuch-labeler
-                         persp-mode
-                         (notmuch :location site)))
+                                  (notmuch :location built-in)
+                                  ))
 
 
-(defun notmuch/init-notmuch ()
+(defun notmuch-personal/post-init-notmuch ()
        (use-package notmuch
          :defer t
          :commands notmuch
@@ -59,6 +59,7 @@
                    (setq sendmail-program notmuch-use-sendmail))))
 
          ;; Dynamic evil-states based off of text property
+         ;; Treats text-boxes like regular text files
          (add-hook
           'notmuch-hello-mode-hook
           (lambda ()
@@ -113,97 +114,24 @@
            (notmuch/switch-keys notmuch-show-mode-map (kbd "l")(kbd "\""))
            (notmuch/switch-keys notmuch-show-mode-map (kbd "k")(kbd ":"))
            (notmuch/switch-keys notmuch-show-mode-map (kbd "a")(kbd "o"))
-           )))
 
-(defun notmuch/post-init-persp-mode ()
+           (notmuch/add-key notmuch-tree-mode-map (kbd "d") 'spacemacs/notmuch-message-delete-down)
+           (notmuch/add-key notmuch-tree-mode-map (kbd "D") 'spacemacs/notmuch-message-delete-up)
+           (notmuch/add-key notmuch-tree-mode-map (kbd "M") 'compose-mail-other-frame)
+           (notmuch/add-key notmuch-search-mode-map (kbd "a") 'spacemacs/notmuch-search-archive-thread-down)
+           (notmuch/add-key notmuch-search-mode-map (kbd "A") 'spacemacs/notmuch-search-archive-thread-up)
+           (notmuch/add-key notmuch-search-mode-map (kbd "d") 'spacemacs/notmuch-message-delete-down)
+           (notmuch/add-key notmuch-search-mode-map (kbd "D") 'spacemacs/notmuch-message-delete-up)
+           (notmuch/add-key notmuch-search-mode-map (kbd "J") 'notmuch-jump-search)
+           (notmuch/add-key notmuch-search-mode-map (kbd "L") 'notmuch-search-filter)
+           (notmuch/add-key notmuch-search-mode-map (kbd "gg") 'notmuch-search-first-thread)
+           (notmuch/add-key notmuch-search-mode-map (kbd "gr") 'notmuch-refresh-this-buffer)
+           (notmuch/add-key notmuch-search-mode-map (kbd "gR") 'notmuch-refresh-all-buffers)
+           (notmuch/add-key notmuch-search-mode-map (kbd "G") 'notmuch-search-last-thread)
+           (notmuch/add-key notmuch-search-mode-map (kbd "M") 'compose-mail-other-frame)
 
-  (spacemacs|define-custom-layout notmuch-spacemacs-layout-name
-    :binding notmuch-spacemacs-layout-binding
-    :body
-    (call-interactively 'notmuch)))
 
+           )
 
-;; (progn
-;;         (((spacemacs/set-leader-keys "amn" 'notmuch/new-mail
-;;           "amm" 'notmuch/jump-search "ami" 'notmuch/inbox)))
-;;         (spacemacs/set-leader-keys-for-major-mode
-;;           'notmuch-search-mode "t+" 'notmuch-search-add-tag)
-;;         (spacemacs/set-leader-keys-for-major-mode
-;;           'notmuch-tree-mode "tt" 'notmuch-tree-tag-thread
-;;           "t+" 'notmuch-tree-add-tag "t-" 'notmuch-tree-remove-tag
-;;           "r" 'notmuch-tree-refresh-view
-;;           ;; "d" 'notmuch-tree-archive-message-then-next
-;;           ;; "A" 'notmuch-tree-archive-thread
-;;           "g" 'notmuch-poll-and-refresh-this-buffer
-;;           "s" 'notmuch-search-from-tree-current-query
-;;           "c" 'notmuch-show-stash-map "m" 'notmuch-mua-new-mail
-;;           "w" 'notmuch-show-save-attachments)
-;;         (spacemacs/set-leader-keys-for-minor-mode
-;;           'notmuch-message-mode "," 'notmuch-mua-send-and-exit
-;;           "k" 'message-kill-buffer))
+))
 
-;; :config
-;; (progn (evilified-state-evilify-map notmuch-search-mode-map
-;;         :mode notmuch-search-mode
-;;         :bindings (kbd "q")'notmuch-search-quit
-;;         (kbd "r")
-;;         'notmuch-search-reply-to-thread
-;;         (kbd "R")
-;;         'notmuch-search-reply-to-thread-sender)
-;;       (evilified-state-evilify-map notmuch-show-mode-map
-;;         :mode notmuch-show-mode)
-;;       (evilified-state-evilify-map notmuch-tree-mode-map
-;;         :mode notmuch-tree-mode
-;;         :bindings (kbd "q")'notmuch-bury-or-kill-this-buffer
-;;         (kbd "?")
-;;         'notmuch-help
-;;         (kbd "RET")
-;;         'notmuch/tree-show-message
-;;         (kbd "}")
-;;         'notmuch-tree-scroll-or-next
-;;         (kbd "{")
-;;         'notmuch-tree-scroll-message-window-back)
-
-;;       ;; :init (tabbar-mode)
-;;       ;; :bind (("C-<tab>" . tabbar-forward-tab)
-;;       ;;        ("C-S-<tab>" . tabbar-backward-tab)))
-
-;;       ;; See https://github.com/syl20bnr/spacemacs/issues/6681
-
-;;       (push "\\*notmuch.+\\*" spacemacs-useful-buffers-regexp)
-;;       ;; Fix helm
-;;       ;; See id:m2vbonxkum.fsf@guru.guru-group.fi
-;;       (setq notmuch-address-selection-function (lambda (prompt collection initial-input)
-;;                                                  (completing-read prompt
-;;                                                                   (cons initial-input collection)
-;;                                                                   nil
-;;                                                                   t
-;;                                                                   nil
-;;                                                                   'notmuch-address-history)))
-
-;;       ;; (spacemacs/declare-prefix-for-mode 'notmuch-show-mode "n" "notmuch")
-;;       ;; (spacemacs/declare-prefix-for-mode 'notmuch-show-mode "n." "MIME parts")
-
-;;       (evilified-state-evilify-map 'notmuch-hello-mode-map
-;;         :mode notmuch-hello-mode)
-;;       (evilified-state-evilify-map 'notmuch-show-stash-map
-;;         :mode notmuch-show-mode)
-;;       (evilified-state-evilify-map 'notmuch-show-part-map
-;;         :mode notmuch-show-mode)
-;;       (evilified-state-evilify-map 'notmuch-show-mode-map
-;;         :mode notmuch-show-mode
-;;         :bindings (kbd "N")'notmuch-show-next-message
-;;         (kbd "n")
-;;         'notmuch-show-next-open-message)
-;;       (evilified-state-evilify-map 'notmuch-tree-mode-map
-;;         :mode notmuch-tree-mode)
-;;       (evilified-state-evilify-map 'notmuch-search-mode-map
-;;         :mode notmuch-search-mode
-;;         :bindings (kbd "f")'notmuch-search-filter)
-;;       (evil-notmuch/switch-keys 'visual notmuch-search-mode-map
-;;         "*" 'notmuch-search-tag-all "a" 'notmuch-search-archive-thread
-;;         "-" 'notmuch-search-remove-tag "+" 'notmuch-search-add-tag)
-;;       (spacemacs/set-leader-keys-for-major-mode
-;;         'notmuch-show-mode "nc" 'notmuch-show-stack-cc
-;;         "n|" 'notmuch-show-pipe-message "nw" 'notmuch-show-save-attachments
-;;         "nv" 'notmuch-show-view-raw-message))))

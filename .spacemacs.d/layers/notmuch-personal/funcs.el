@@ -50,3 +50,7 @@ key's definition"
   (define-key keymap (kbd newkey) (lookup-key keymap (kbd oldkey)))
   (define-key keymap (kbd oldkey) nil)
   )
+
+(defun notmuch/add-key (keymap newkey func)
+  "Adds NEWKEY to KEYMAP to call FUNC"
+  (define-key keymap (kbd newkey) func))

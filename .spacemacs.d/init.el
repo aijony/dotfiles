@@ -115,9 +115,10 @@ values."
      browsing
      theme
      ob-ipython
-     (notmuch :variables
-              notmuch-better-defaults 't
-              notmuch-use-sendmail 't)
+     notmuch
+     (notmuch-personal :variables
+                       notmuch-better-defaults 't
+                       notmuch-use-sendmail 't)
      pretty
      erc
      (rcirc :variables
