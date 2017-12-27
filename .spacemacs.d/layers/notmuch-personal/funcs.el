@@ -1,6 +1,7 @@
 (require 'seq)
 
 
+
 (defun notmuch/search ()
   (interactive)
   (require 'notmuch)
@@ -44,13 +45,18 @@ expression that incorporates them all in an or-like fashion."
                  (concat a "\\|\\(" b "\\)"))))
     (seq-reduce func body head)))
 
-(defun notmuch/switch-keys (keymap oldkey newkey)
+(defun notmuch/switch-keys (keymap keyslist)
   "Swaps OLDKEY with NEWKEY in KEYMAP without changing the
 key's definition"
-  (define-key keymap (kbd newkey) (lookup-key keymap (kbd oldkey)))
-  (define-key keymap (kbd oldkey) nil)
-  )
+  (dolist (keys keyslist)
+    (let ((oldkey (car keys))
+          (newkey (car (cdr keys))))
+      (define-key keymap (kbd newkey) (lookup-key keymap (kbd oldkey)))
+      (define-key keymap (kbd oldkey) nil))))
 
-(defun notmuch/add-key (keymap newkey func)
+(defun notmuch/add-key (keymap keybindlist)
   "Adds NEWKEY to KEYMAP to call FUNC"
-  (define-key keymap (kbd newkey) func))
+  (dolist (keybind keybindlist)
+    (let ((newkey (car keybind))
+          (func (car (cdr keybind))))
+      (define-key keymap (kbd newkey) func))))
