@@ -57,6 +57,7 @@ values."
      ruby-on-rails
      ;;Useless
      asp
+     bibtex
      selectric
      (circe :variables
             circe-helm-for-username-completion 'nil)
@@ -124,6 +125,8 @@ values."
      (rcirc :variables
             rcirc-enable-znc-support t
             rcirc-spacemacs-layout-binding "r")
+     twitter
+     search-engine
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -135,6 +138,7 @@ values."
                                       fireplace
                                       decide
                                       password-store
+                                      hackernews
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()

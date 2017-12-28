@@ -1,4 +1,4 @@
-(setq browse-url-browser-function 'browse-url-firefox-beta)
+(setq browse-url-browser-function 'browse-url-firefox)
 
 (setq httpd-port '8082)
 
