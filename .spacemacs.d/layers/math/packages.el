@@ -18,23 +18,24 @@
 ;;
 ;;
 ;; Briefly, each package to be installed or configured by this layer should be
-;; added to `sagemath-packages'. Then, for each package PACKAGE:
+;; added to `math-packages'. Then, for each package PACKAGE:
 ;;
 ;; - If PACKAGE is not referenced by any other Spacemacs layer, define a
-;;   function `sagemath/init-PACKAGE' to load and initialize the package.
+;;   function `math/init-PACKAGE' to load and initialize the package.
 
 ;; - Otherwise, PACKAGE is already referenced by another Spacemacs layer, so
-;;   define the functions `sagemath/pre-init-PACKAGE' and/or
-;;   `sagemath/post-init-PACKAGE' to customize the package as it is loaded.
+;;   define the functions `math/pre-init-PACKAGE' and/or
+;;   `math/post-init-PACKAGE' to customize the package as it is loaded.
 
 ;;; Code:
 
-(defconst sagemath-packages
+(defconst math-packages
   '(
     sage-shell-mode
     auto-complete-sage
     helm-sage
     ob-sagemath
+    (calc :location built-in)
     ;; sage-shell-mode contains a copy of sage(-mode).
     ;; If it breaks, then enabling this is your backup plan.
     ;; (sage :location (recipe
@@ -44,7 +45,7 @@
     )
   )
 
-(defun sagemath/init-ob-sagemath()
+(defun math/init-ob-sagemath()
   (use-package ob-sagemath
      :defer t
      :config
@@ -54,19 +55,19 @@
 
      ))
 
-(defun sagemath/post-init-org-mode ()
-  (define-key org-mode-map (kbd "C-c c") 'ob-sagemath-execute-async))
+(defun math/post-init-org-mode ()
+  (define-key org-mode-map (kbd "C-c c") 'ob-math-execute-async))
 
-(defun sagemath/init-helm-sage()
+(defun math/init-helm-sage()
   (use-package helm-sage
     :defer t))
 
-(defun sagemath/init-auto-complete-sage ()
+(defun math/init-auto-complete-sage ()
   (use-package auto-complete-sage
     :defer t))
 
 
-(defun sagemath/init-sage-shell-mode ()
+(defun math/init-sage-shell-mode ()
   (use-package sage-shell-mode
     :defer t
     :config
@@ -111,7 +112,7 @@
 
 ;; sage-shell-mode contains a copy of sage(-mode).
 ;; If it breaks, then enabling this is your backup plan.
-;;(defun sagemath/init-sage ()
+;;(defun math/init-sage ()
   ;; (use-package sage
   ;;   :defer t
 ;; :config
@@ -121,7 +122,7 @@
   ;; )
 
 ;; sage-shell-mode can be extended with auto-complete as well, if you don't like helm
-;; (defun sagemath/init-auto-complete-sage ()
+;; (defun math/init-auto-complete-sage ()
 ;;   (use-package auto-complete-sage)
 ;;   :defer t
 ;;   :config
@@ -130,11 +131,19 @@
 ;;     )
 ;;   )
 
-(defun sagemath/init-helm-sage ()
+(defun math/init-helm-sage ()
   (use-package helm-sage
     :defer t
     )
   )
+
+(defun math/init-calc ()
+  (use-package calc
+    :config
+
+    (with-eval-after-load 'calculator
+      (define-key calc-mode-map "kj" 'evil-escape))
+    (add-hook 'calc-load-hook (lambda () (define-key calc-mode-map "kj" 'evil-escape)))))
 ;;ob-sagemath
 
 ;;; packages.el ends here

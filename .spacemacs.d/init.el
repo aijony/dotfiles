@@ -109,7 +109,7 @@ values."
      better-auto-completion
      (org :variables org-enable-reveal-js-support
           t)
-     sagemath
+     math
      orxtended
      bibtex
      browsing
@@ -418,6 +418,8 @@ you (should) place your code here."
 
   ;;Good gameplay
   (setq evil-escape-key-sequence "kj")
+
+
   (setq evil-search-module (quote evil-search))
 
   (setq persp-set-frame-buffer-predicate nil)
