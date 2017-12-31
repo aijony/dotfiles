@@ -11,7 +11,8 @@
    ;; neutralise some ledgerisms
    (setq ledger-binary-path (expand-file-name "~/.local/bin/hledger"))
    (setq ledger-mode-should-check-version nil)
-   (setq ledger-init-file-name " ")
+   (setq ledger-init-file-name ")
+  ")
 
    ;; move default amount position right allowing longer account names
    (setq ledger-post-amount-alignment-column 35)
@@ -57,6 +58,9 @@
    (defvar ledger-report-balance
      (list "bal" (concat ledger-binary-path " -f %(ledger-file) bal")))
 
+   (defvar ledger-report-balance-sheet
+     (list "bs" (concat ledger-binary-path " -f %(ledger-file) bs --no-total")))
+
    (defvar ledger-report-reg
      (list "reg" (concat ledger-binary-path " -f %(ledger-file) reg")))
 
@@ -66,8 +70,16 @@
    (defvar ledger-report-account
      (list "account" (concat ledger-binary-path " -f %(ledger-file) reg %(account)")))
 
+   (defvar ledger-report-statement
+     (list "stat" (concat ledger-binary-path
+                          " -f %(ledger-file) is --tree --pretty-table -MA cur:'\\$' && " ;| sed 's/\\$/\\-\\$/g; s/\\-\$\\-/\\$/g' && "
+                          ledger-binary-path
+                          " -f %(ledger-file) bal --pretty-tables assets:ff assets:wf --no-total")))
+
    (setq ledger-reports
-         (list ledger-report-balance
+         (list ledger-report-statement
+               ledger-report-balance
+               ledger-report-balance-sheet
                ledger-report-reg
                ledger-report-payee
                ledger-report-account))
@@ -107,5 +119,16 @@ the balance into that."
   :config
   ;; Provide the path to you journal file.
   ;; The default location is too opinionated.
+  (custom-set-variables
+   '(hledger-currency-string "$")
+   '(hledger-extra-args "")
+   '(hledger-ratios-income-accounts "revenue")
+   '(hledger-ratios-liquid-asset-accounts "assets:wf assets:ff assets:cc")
+   '(hledger-ratios-essential-expense-accounts "expenses:education expenses:food expenses:travel expenses:transport expenses:fees")
+   '(hledger-ratios-debt-accounts "liabilities")
+   '(hledger-top-income-account "revenue")
+   '(hledger-year-of-birth 1999)
+   '(hledger-life-expectancy 90))
+
   (setq hledger-jfile "~/finance/hledger.journal")))
 
