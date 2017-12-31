@@ -134,16 +134,15 @@
 (defun math/init-helm-sage ()
   (use-package helm-sage
     :defer t
-    )
-  )
+    ))
 
 (defun math/init-calc ()
   (use-package calc
+    :commands calc
+    :defer t
     :config
-
-    (with-eval-after-load 'calculator
-      (define-key calc-mode-map "kj" 'evil-escape))
-    (add-hook 'calc-load-hook (lambda () (define-key calc-mode-map "kj" 'evil-escape)))))
+    (calc-eval "2+2")
+    (define-key calc-mode-map "kj" 'evil-escape)))
 ;;ob-sagemath
 
 ;;; packages.el ends here
