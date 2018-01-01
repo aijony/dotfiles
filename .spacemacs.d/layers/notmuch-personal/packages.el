@@ -136,3 +136,30 @@
                                                       ("G" notmuch-search-last-thread)
                                                       ("M" compose-mail-other-frame))))))
 
+;;; HACK Fix keybindings
+
+(defun notmuch/init-notmuch ()
+  (use-package notmuch
+    :defer t
+    :commands notmuch
+    :init
+    (progn
+      (spacemacs/declare-prefix "aN" "notmuch")
+      (spacemacs/set-leader-keys "aNN" 'notmuch)
+      (spacemacs/set-leader-keys "aNi" 'spacemacs/notmuch-inbox)
+      (spacemacs/set-leader-keys "aNj" 'notmuch-jump-search)
+      (spacemacs/set-leader-keys "aNs" 'notmuch-search)
+      (spacemacs/set-leader-keys "aNn" 'helm-notmuch)
+      (load-library "org-notmuch"))
+    :config
+    (progn
+      (dolist (prefix '(("ms" . "stash")
+                        ("mp" . "part")
+                        ("mP" . "patch")))
+        (spacemacs/declare-prefix-for-mode 'notmuch-show-mode
+          (car prefix)
+          (cdr prefix))))
+
+  ;; fixes: killing a notmuch buffer does not show the previous buffer
+  (push "\\*notmuch.+\\*" spacemacs-useful-buffers-regexp)
+  ))

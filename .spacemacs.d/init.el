@@ -97,13 +97,12 @@ values."
      imenu-list
      dash
      colors
-     finance 
+     finance
      hledger
      ;;wakatime
      ;;Window Managment
      spacemacs-layouts
      ;;Custom
-     gnus
      eshell
      writing
      lilypond-mode
@@ -440,12 +439,6 @@ you (should) place your code here."
   (push 'company-ycmd company-backends-python-mode)
   (delete 'company-anaconda company-backends-python-mode)
   (remove-hook 'python-mode-hook 'anaconda-mode)
-
-  ;; Latex Preview Packages
-  ;; Woo category theory
-  (add-to-list 'org-latex-packages-alist '("" "tikz-cd" nil))
-
-  (plist-put org-format-latex-options :scale 1.35)
 
 
   (require 'org-notmuch)

@@ -132,6 +132,11 @@
 
 (defun orxtended/post-init-org ()
 
+  ;; Latex Preview Packages
+  ;; Woo category theory
+  (add-to-list 'org-latex-packages-alist '("" "tikz-cd" nil))
+
+  (plist-put org-format-latex-options :scale 1.35)
 
   ;; Hooks
   (add-hook 'pdf-view-mode-hook 'pdf-view-midnight-minor-mode)
@@ -204,11 +209,11 @@
 
   ;; Keybindings
   (spacemacs/set-leader-keys-for-major-mode 'org-mode
-    "s x" 'org-cut-subtree
-    "s p" 'org-paste-subtree
-    "s y" 'org-copy-subtree
-    "s R" 'orxtended/org-refile-to-datetree
-    "s a" 'org-archive-to-archive-sibling))
+    "sx" 'org-cut-subtree
+    "sp" 'org-paste-subtree
+    "sy" 'org-copy-subtree
+    "sR" 'orxtended/org-refile-to-datetree
+    "sa" 'org-archive-to-archive-sibling))
 
 (defun orxtended/init-org-protocol ()
   (use-package org-protocol
