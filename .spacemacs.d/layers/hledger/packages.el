@@ -4,6 +4,11 @@
 
 (defun hledger/post-init-ledger-mode ()
    :config
+
+   ;; My keybinding
+   (evil-leader/set-key "s$" 'void-dollar-symbol)
+
+
    ;; Simon's ledger-mode tweaks
    (setq ledger-report-links-in-register nil)
 
