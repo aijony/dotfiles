@@ -17,9 +17,10 @@
 
 (setq org-agenda-files (list "~/org/cal.org"
                              "~/org/main.org"
-                             "~/org/agenda.org"
+                             "~/org/a.org"
                              "~/org/refile.org"
-                             "~/org/swedemom.org"))
+                             ;;"~/org/swedemom.org"
+                             ))
 
 (setq org-todo-keywords
       (quote ((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d)" "GOOD(g)")
