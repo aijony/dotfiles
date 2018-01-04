@@ -38,6 +38,9 @@
         ("j" "journal" entry (file+datetree "~/org/journal.org")
          "* %?\n%U\n")
 
+        ("d" "dream" entry (file+datetree "~/org/dreams.org")
+         "* %?\n%u\n")
+
         ("t" "todo" entry (file "~/org/refile.org")
          "* TODO %^{Description} %^G %i%?")
 
