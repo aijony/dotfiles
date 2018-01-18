@@ -116,4 +116,9 @@
     (setq flycheck-check-syntax-automatically '(mode-enabled new-line))
     ))
 
+(defun better-auto-completion-packages/post-init-yasnippet ()
+  (spacemacs/toggle-yasnippet-on)
+  (add-to-list 'yas-snippet-dirs (expand-file-name "~/.spacemacs.d/snippets"))
+
+  )
 ;;; packages.el ends here
