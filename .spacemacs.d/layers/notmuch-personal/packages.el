@@ -7,8 +7,8 @@
 ;; github:mullr
 
 (setq notmuch-personal-packages '(
-                         ;; helm-notmuch
-                         ;; notmuch-labeler
+                                  ;; helm-notmuch
+                                  ;; notmuch-labeler
                                   (notmuch :location built-in)
                                   ))
 
@@ -87,6 +87,8 @@
            (evil-set-initial-state mode 'evilified))
 
 
+
+
          ;; TODO Don't use eval-after-load (maybe)
          (with-eval-after-load 'notmuch
            (notmuch/switch-keys notmuch-common-keymap '(("j"  ";")))
@@ -163,3 +165,10 @@
   ;; fixes: killing a notmuch buffer does not show the previous buffer
   (push "\\*notmuch.+\\*" spacemacs-useful-buffers-regexp)
   ))
+
+(defun notmuch/post-init-persp-mode ()
+
+  (spacemacs|define-custom-layout notmuch-spacemacs-layout-name
+    :binding notmuch-spacemacs-layout-binding
+    :body
+    (call-interactively 'notmuch)))
