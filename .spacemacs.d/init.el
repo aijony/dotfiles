@@ -447,6 +447,7 @@ you (should) place your code here."
                                '((C . t)
                                  (emacs-lisp . t)
                                  (latex . t)
+                                 (shell .t)
                                  (python . t)
                                  (ipython . t)
                                  (sagemath . t)
