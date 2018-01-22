@@ -30,17 +30,19 @@
 ;;; Code:
 
 
-(setq better-auto-completion-packages '())
+(setq better-auto-completion-packages '(
+                                        company-ycmd
+                                        flycheck-ycmd
+                                        yasnippet
+                                        ))
 
 
 
 
 
-(defun better-auto-completion-packages/post-init-auto-completion ()
-  (use-package company-ycmd
-    :post-init
+(defun better-auto-completion/post-init-company-ycmd ()
     (company-ycmd-setup)
-    :config
+
     ;;Thanks to git hub user Paulo Costa @pcesar22 All calls to
     ;;perl-mode now use cperl-mode
     (defalias 'perl-mode 'cperl-mode)
@@ -98,11 +100,11 @@
     ;;                   (remove-hook 'completion-at-point-functions
     ;;                                x))))))
 
-    (setq ycmd-force-semantic-completion t)))
+    (setq ycmd-force-semantic-completion t))
 
 
-(defun better-auto-completion-packages/post-init-syntax-checking ()
-  (use-package flycheck-ycmd
+(defun better-auto-completion/post-init-flycheck-ycmd ()
+
     ;;Help artifacts when using terminal mode
     (when (not (display-graphic-p))
       (setq flycheck-indication-mode nil))
@@ -112,13 +114,12 @@
                                         (flycheck-pos-tip-mode 'toggle))))
 
     ;;Build directory settings
+    )
 
-    (setq flycheck-check-syntax-automatically '(mode-enabled new-line))
-    ))
-
-(defun better-auto-completion-packages/post-init-yasnippet ()
+(defun better-auto-completion/post-init-yasnippet ()
   (spacemacs/toggle-yasnippet-on)
   (add-to-list 'yas-snippet-dirs (expand-file-name "~/.spacemacs.d/snippets"))
 
+  (setq jonathan-sucks "yep")
   )
 ;;; packages.el ends here
