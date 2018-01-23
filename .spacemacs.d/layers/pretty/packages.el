@@ -192,10 +192,11 @@
       (pretty-deactivate-groups
        '(:equality :ordering :ordering-triple
                    :arrows :arrows-twoheaded
+                   :sub-and-superscripts 
                    ))
 
       (pretty-activate-groups
-       '(:sub-and-superscripts :greek :arithmetic-nary :logic :sets :punctuation :ordering-double))
+       '(:greek :arithmetic-nary :logic :sets :punctuation :ordering-double))
       )))
 
 (defun pretty/post-init-rcirc ()
