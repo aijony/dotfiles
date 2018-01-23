@@ -1,0 +1,15 @@
+#+TITLE: ERC-ZNC layer
+#+HTML_HEAD_EXTRA: <link rel="stylesheet" type="text/css" href="../../../css/readtheorg.css" />
+
+* Table of Contents                                         :TOC_4_org:noexport:
+ - [[Description][Description]]
+ - [[Key bindings][Key bindings]]
+
+* Description
+Layer for [[https://github.com/sshirokov/ZNC.el][ZNC mode for ERC]].
+
+* Key bindings
+
+| Key Binding | Description                                                                     |
+|-------------+---------------------------------------------------------------------------------|
+| ~SPC a i z~ | Starts ZNC mode, it will allow you to choose the network you want to connect to |

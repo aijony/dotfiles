@@ -59,8 +59,8 @@ values."
      asp
      bibtex
      selectric
-     (circe :variables
-            circe-helm-for-username-completion 'nil)
+     ;(circe :variables
+     ;      circe-helm-for-username-completion 'nil)
      ;;Languages
      c-c++
      cscope
@@ -121,9 +121,10 @@ values."
                        notmuch-use-sendmail 't)
      pretty
      erc
-     (rcirc :variables
-            rcirc-enable-znc-support t
-            rcirc-spacemacs-layout-binding "r")
+     erc-znc
+     ;(rcirc :variables
+     ;       rcirc-enable-znc-support t
+     ;       rcirc-spacemacs-layout-binding "r")
      twitter
      search-engine
      )
@@ -439,6 +440,7 @@ you (should) place your code here."
   (push 'company-ycmd company-backends-python-mode)
   (delete 'company-anaconda company-backends-python-mode)
   (remove-hook 'python-mode-hook 'anaconda-mode)
+
 
 
   (require 'org-notmuch)
