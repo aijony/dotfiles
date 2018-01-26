@@ -1,4 +1,3 @@
-
 ;;; packages.el --- lilypond-mode layer packages file for Spacemacs.
 ;;
 ;; Copyright (c) 2012-2016 Sylvain Benner & Contributors
@@ -32,20 +31,26 @@
 
 (defconst lilypond-mode-packages
   '(
-    (lilypond-mode :location (recipe
-                              :fetcher git
-                              :url "git://git0.savannah.gnu.org/lilypond.git"
-                              :files ("*.el"
-                                      (:exclude ".dir-locals.el" "test.el" "tests.el" "*-test.el" "*-tests.el"))))
+    (lilypond-mode :location built-in)
     )
   )
 
- ;; For each extension, define a function lilypond-mode/init-<extension-lilypond-mode>
-  ;;
+;; For each extension, define a function lilypond-mode/init-<extension-lilypond-mode>
+;;
 (defun lilypond-mode/init-lilypond-mode ()
-    (use-package lilypond-mode
-      :config
-      (add-to-list 'auto-mode-alist '("\\.ly\\'" . LilyPond-mode))
-      )
-)
+  (use-package lilypond-mode
+    :commands LilyPond-mode
+    :config
+    (autoload 'LilyPond-mode "lilypond-mode")
+    (setq auto-mode-alist
+          (cons '("\\.ly$" . LilyPond-mode) auto-mode-alist))
+
+    (add-hook 'LilyPond-mode-hook (lambda () (turn-on-font-lock)))
+
+
+    (setq locale-coding-system 'utf-8)
+    (set-terminal-coding-system 'utf-8)
+    (set-keyboard-coding-system 'utf-8)
+    (set-selection-coding-system 'utf-8)
+    (prefer-coding-system 'utf-8)))
 ;;; packages.el ends here
