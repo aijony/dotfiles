@@ -135,5 +135,5 @@ the balance into that."
    '(hledger-year-of-birth 1999)
    '(hledger-life-expectancy 90))
 
-  (setq hledger-jfile "~/finance/hledger.journal")))
+  (setq hledger-jfile "~/org/finance/hledger.journal")))
 
