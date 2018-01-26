@@ -10,15 +10,11 @@
                                   ;; helm-notmuch
                                   ;; notmuch-labeler
                                   (notmuch :location built-in)
+                                  persp-mode
                                   ))
 
 
 (defun notmuch-personal/post-init-notmuch ()
-       (use-package notmuch
-         :defer t
-         :commands notmuch
-         :config
-
          ;; See https://github.com/syl20bnr/spacemacs/issues/6681
          (push "\\*notmuch.+\\*" spacemacs-useful-buffers-regexp)
 
@@ -136,7 +132,7 @@
                                                       ("gr" notmuch-refresh-this-buffer)
                                                       ("gR" notmuch-refresh-all-buffers)
                                                       ("G" notmuch-search-last-thread)
-                                                      ("M" compose-mail-other-frame))))))
+                                                      ("M" compose-mail-other-frame)))))
 
 ;;; HACK Fix keybindings
 
@@ -166,8 +162,7 @@
   (push "\\*notmuch.+\\*" spacemacs-useful-buffers-regexp)
   ))
 
-(defun notmuch/post-init-persp-mode ()
-
+(defun notmuch-personal/post-init-persp-mode ()
   (spacemacs|define-custom-layout notmuch-spacemacs-layout-name
     :binding notmuch-spacemacs-layout-binding
     :body
