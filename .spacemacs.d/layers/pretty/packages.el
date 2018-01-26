@@ -32,7 +32,7 @@
       (setq hy-pretty-pairs
             (pretty-code-get-pairs
              '(:lambda "fn" :def "defn"
-                       :composition "comp"
+                       ; :composition "comp"
                        :null "None" :true "True" :false "False"
                        :in "in" :not "not"
                        :and "and" :or "or"
@@ -157,7 +157,7 @@
 
 ;;;; Spaceline-all-the-icons
 
-(defun pretty/init-spaceline-all-the-icons ()
+(defun pretty/post-init-spaceline-all-the-icons ()
   (use-package spaceline-all-the-icons
     :after spaceline
     :config
@@ -167,7 +167,7 @@
       (setq spaceline-highlight-face-func 'spaceline-highlight-face-default)
       (setq spaceline-all-the-icons-icon-set-modified 'chain)
       (setq spaceline-all-the-icons-icon-set-window-numbering 'square)
-      (setq spaceline-all-the-icons-separator-type 'none)
+      (setq spaceline-all-the-icons-separator-type 'arrow)
       (setq spaceline-all-the-icons-primary-separator "")
 
       (spaceline-toggle-all-the-icons-buffer-size-off)
@@ -193,16 +193,17 @@
        '(:equality :ordering :ordering-triple
                    :arrows :arrows-twoheaded
                    :sub-and-superscripts 
+                   :punctuation 
                    ))
 
       (pretty-activate-groups
-       '(:greek :arithmetic-nary :logic :sets :punctuation :ordering-double))
+       '(:greek :arithmetic-nary :logic :sets :ordering-double))
       )))
 
 (defun pretty/post-init-rcirc ()
-    (add-to-list 'pretty-supported-modes 'rcirc-mode)
-    (add-to-list 'pretty-modes-aliases '(rcirc-mode . haskell-mode))
-    (add-hook 'rcirc-mode-hook 'pretty-notch-fifty)
+    ; (add-to-list 'pretty-supported-modes 'rcirc-mode)
+    ; (add-to-list 'pretty-modes-aliases '(rcirc-mode . haskell-mode))
+    ; (add-hook 'rcirc-mode-hook 'pretty-notch-fifty)
     )
 
 ;; (defun pretty/init-latex-pretty-symbols ()
@@ -222,8 +223,8 @@
           haskell-font-lock-symbols-alist '(("\\" . "λ")
                                             ("not" . "¬")
                                             ("()" . "∅")
-                                            ("==" . "≡")
-                                            ("/=" . "≢")
+                                            ;("==" . "≡")
+                                            ;("/=" . "≢")
                                             ("!!" . "‼")
                                             ("&&" . "∧")
                                             ("||" . "∨")
@@ -233,5 +234,5 @@
                                             ("." "∘" haskell-font-lock-dot-is-not-composition)
                                             ("forall" . "∀")))))
 
-(defun pretty/init-font-lock+ ()
+(defun pretty/post-init-font-lock+ ()
   (use-package font-lock+))
