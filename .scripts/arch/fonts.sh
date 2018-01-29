@@ -1,6 +1,6 @@
 #!/bin/sh
 
-sudo pacman -S adobe-source-code-pro-fonts 
+sudo pacman -S adobe-source-code-pro-fonts ttf-fira-mono
 
 mkdir ~/.local/share/fonts/
 

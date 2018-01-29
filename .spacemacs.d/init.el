@@ -218,7 +218,7 @@ values."
    dotspacemacs-colorize-cursor-according-to-state nil
    ;; Default font, or prioritized list of fonts. `powerline-scale' allows to
    ;; quickly tweak the mode-line size to make separators look not too crappy.
-   dotspacemacs-default-font '("Source Code Pro"
+   dotspacemacs-default-font '("Fira Mono"
                                :size 13
                                :weight normal
                                :width normal
@@ -413,6 +413,14 @@ you (should) place your code here."
   ;;These secrets have yet to be revealed.
   (load "~/.private.el")
 
+  (setq remote-file-name-inhibit-cache nil)
+  (setq tramp-default-method "ssh")
+  (setq vc-ignore-dir-regexp
+        (format "%s\\|%s"
+                vc-ignore-dir-regexp
+                tramp-file-name-regexp))
+  (setq tramp-verbose 6)
+
   ;;tag
   (setq persp-add-buffer-on-after-change-major-mode t)
 
@@ -440,8 +448,6 @@ you (should) place your code here."
   (push 'company-ycmd company-backends-python-mode)
   (delete 'company-anaconda company-backends-python-mode)
   (remove-hook 'python-mode-hook 'anaconda-mode)
-
-
 
   (require 'org-notmuch)
   ;;Babel Language specifics

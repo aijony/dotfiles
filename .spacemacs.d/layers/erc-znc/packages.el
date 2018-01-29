@@ -15,8 +15,6 @@
 (defconst erc-znc-packages
   '(znc
     erc
-    erc-latex
-    erc-youtube
     ))
 
 (defun erc-znc/init-znc ()
@@ -28,19 +26,17 @@
 (defun erc-znc/post-init-erc ()
   (spacemacs/set-leader-keys
     "aie" 'znc-erc)
+  (with-eval-after-load 'erc
+    (erc-image-disable)
+    (erc-latex-mode '1)
+    (erc-youtube-disable)
+    (add-hook 'erc-youtube-mode-hook 'erc-youtube-disable)
+    (with-eval-after-load 'erc-youtube-mode
+      (add-hook 'erc-youtube-mode-hook 'erc-youtube-disable)
+      (erc-youtube-disable)))
+
   (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
   (setq erc-lurker-threshold-time 3600))
-
-(defun erc-znc/post-init-erc-image ()
-  (erc-image-disable))
-
-(defun erc-znc/post-init-erc-latex ()
-  (erc-latex-mode '1)
-  )
-
-(defun erc-znc/post-init-erc-youtube ()
-  (erc-youtube-disable))
-
 
 ;; HACK
 (defun erc/post-init-persp-mode ()
