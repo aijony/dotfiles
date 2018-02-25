@@ -431,6 +431,7 @@ you (should) place your code here."
   ;;Good gameplay
   (setq evil-escape-key-sequence "kj")
 
+  (add-to-list 'auto-mode-alist '("\\..pp\\'" . c++-mode))
 
   (setq evil-search-module (quote evil-search))
 

@@ -36,5 +36,6 @@
        '(
          ;;Get the package from MELPA, ELPA, etc.
          cpputils-cmake
+         (add-to-list 'auto-mode-alist '("\\CMake\\'" . cmake-mode))
         ))
 ;;; packages.el ends here
