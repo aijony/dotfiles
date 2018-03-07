@@ -80,6 +80,8 @@
     (setq to-command (my-eval-string (concat "(\"" word-python "\" \"" ycmd-dir
                                              "\")")))
 
+    (setq ycmd-extra-conf-whitelist '("*"))
+
     (set-variable 'ycmd-server-command to-command)
 
     (set-variable 'ycmd-extra-conf-handler 'load)

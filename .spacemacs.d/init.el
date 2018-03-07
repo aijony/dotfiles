@@ -413,6 +413,8 @@ you (should) place your code here."
   ;;These secrets have yet to be revealed.
   (load "~/.private.el")
 
+  (setq twittering-use-master-password 't)
+
   (setq remote-file-name-inhibit-cache nil)
   (setq tramp-default-method "ssh")
   (setq vc-ignore-dir-regexp
@@ -446,8 +448,8 @@ you (should) place your code here."
                                               c++-mode-hook
                                               c-mode-hook))
   ;;Auto-complete python specifics
-  (push 'company-ycmd company-backends-python-mode)
-  (delete 'company-anaconda company-backends-python-mode)
+  ;(push 'company-ycmd company-backends-python-mode)
+  ;(delete 'company-anaconda company-backends-python-mode)
   (remove-hook 'python-mode-hook 'anaconda-mode)
 
   (require 'org-notmuch)

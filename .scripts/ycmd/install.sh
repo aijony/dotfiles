@@ -7,6 +7,9 @@ mkdir .ycmd
 
 cd .ycmd
 
+sudo rm -rf ycmd
+sudo rm -rf YCM-Generator
+
 git clone https://github.com/rdnetto/YCM-Generator
 
 git clone https://github.com/Valloric/ycmd
@@ -15,12 +18,5 @@ cd ycmd
 
 git submodule update --init --recursive
 
-sudo ./build.py --all
-
-cd ~/.spacemacs.d
-
-mkdir layers
-
-cd layers
-
-svn checkout https://github.com/aijony/dotfiles/trunk/.spacemacs.d/private/better-auto-completion
+sudo python build.py --clang-completer
+sudo python build.py --all
