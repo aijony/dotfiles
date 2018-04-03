@@ -98,8 +98,10 @@ values."
      dash
      colors
      finance
-     hledger
      ;;wakatime
+     twitter
+     search-engine
+     docker
      ;;Window Managment
      spacemacs-layouts
      ;;Custom
@@ -122,11 +124,10 @@ values."
      pretty
      erc
      erc-znc
+     hledger
      ;(rcirc :variables
      ;       rcirc-enable-znc-support t
      ;       rcirc-spacemacs-layout-binding "r")
-     twitter
-     search-engine
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -466,5 +467,6 @@ you (should) place your code here."
                                  (org . t)))
 
 
+  (setq helm-use-frame-when-more-than-two-windows 'nil)
 )
 
