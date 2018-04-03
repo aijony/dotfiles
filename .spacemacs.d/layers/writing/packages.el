@@ -35,6 +35,7 @@
         wordsmith-mode
         synonyms
         langtool
+        (diatheke :location built-in)
         ))
 
 (defun writing/init-writegood-mode ()
@@ -65,5 +66,10 @@
   (setq synonyms-cache-file ".spacemacs.d/private/resources/mthesaur.txt.cache")
   )
   )
+
+(defun writing/init-diatheke ()
+  (use-package diatheke
+    :init
+    ))
 
 ;;packages.el ends here
