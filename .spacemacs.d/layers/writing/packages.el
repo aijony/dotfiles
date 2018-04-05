@@ -35,7 +35,7 @@
         wordsmith-mode
         synonyms
         langtool
-        (diatheke :location built-in)
+        (diatheke :location local)
         ))
 
 (defun writing/init-writegood-mode ()

@@ -53,6 +53,7 @@
                            (org-protocol :location built-in)
                            (org-crypt :location built-in)
                            (ob-latex :location built-in)
+                           (ox-manuscript :location local)
                            (ox-extra :location local)))
 
 ;; For each extension, define a function orxtended/init-<extension-orxtended>
@@ -253,7 +254,8 @@
     (setq org-crypt-key nil)
     ))
 
-
+(defun orxtended/init-ox-manuscript ()
+  (use-package ox-manuscript))
 
 
 ;;; packages.el ends here
