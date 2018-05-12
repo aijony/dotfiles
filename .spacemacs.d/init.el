@@ -52,7 +52,8 @@ values."
      theming
      syntax-checking
      ycmd
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-enable-snippets-in-popup t)
      ;;Frameworks
      ruby-on-rails
      ;;Useless
@@ -433,7 +434,7 @@ you (should) place your code here."
 
   ;;Good gameplay
   (setq evil-escape-key-sequence "kj")
-
+  
   (add-to-list 'auto-mode-alist '("\\..pp\\'" . c++-mode))
 
   (setq evil-search-module (quote evil-search))
