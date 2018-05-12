@@ -2,7 +2,7 @@
 ;;Set path for stack
 (add-hook 'eshell-mode-hook '(lambda ()
                                (eshell/set-path "~/.local/bin")
-                               (setenv "LEDGER_FILE" (file-truename "~/finance/hledger.journal"))
+                               (setenv "LEDGER_FILE" (file-truename "~/org/finance/hledger.journal"))
                                ))
 
 
