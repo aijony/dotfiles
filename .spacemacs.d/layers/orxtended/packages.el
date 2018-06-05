@@ -135,7 +135,12 @@
 
   ;; Latex Preview Packages
   ;; Woo category theory
+
   (add-to-list 'org-latex-packages-alist '("" "tikz-cd" nil))
+  (add-to-list 'org-latex-packages-alist '("outputdir=export" "minted"))
+
+  (setq org-latex-listings 'minted) 
+
 
   (plist-put org-format-latex-options :scale 1.35)
 
@@ -181,10 +186,10 @@
    org-preview-latex-default-process 'imagemagick)
 
   ;; This is what makes bibtex work
-  (setq org-latex-pdf-process '("pdflatex -interaction nonstopmode -output-directory %o %f"
+  (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
                                 "bibtex %b"
-                                "pdflatex -interaction nonstopmode -output-directory %o %f"
-                                "pdflatex -interaction nonstopmode -output-directory %o %f"))
+                                "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+                                "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
   ;; Makes the font the wrong freakin color
   ;;(setq org-latex-create-formula-image-program

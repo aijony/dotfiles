@@ -3,4 +3,5 @@
 #Requires a user to be made first 
 sudo pacman -Syu
 
-sudo pacman -S texlive-most imagemagick pandoc
+sudo pacman -S texlive-most imagemagick pandoc 
+sudo pip install Pygments
