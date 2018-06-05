@@ -465,6 +465,7 @@ you (should) place your code here."
                                  (ipython . t)
                                  (sagemath . t)
                                  (haskell . t)
+                                 (ledger . t)
                                  (org . t)))
 
 
