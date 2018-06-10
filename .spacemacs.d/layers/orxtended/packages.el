@@ -182,7 +182,6 @@
   (setq
    ;; Show images after evaluating code blocks.
    org-startup-with-inline-images t
-   org-latex-listings t
    org-preview-latex-default-process 'imagemagick)
 
   ;; This is what makes bibtex work
