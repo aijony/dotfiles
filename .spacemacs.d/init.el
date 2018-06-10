@@ -94,7 +94,6 @@ values."
      github
      version-control
      ;;Misc
-     pdf-tools
      imenu-list
      dash
      colors
@@ -432,9 +431,8 @@ you (should) place your code here."
   (setq powerline-default-separator 'arrow)
   (spacemacs/increase-transparency)
 
-  ;;Good gameplay
   (setq evil-escape-key-sequence "kj")
-  
+
   (add-to-list 'auto-mode-alist '("\\..pp\\'" . c++-mode))
 
   (setq evil-search-module (quote evil-search))
