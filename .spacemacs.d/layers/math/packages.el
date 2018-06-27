@@ -74,7 +74,7 @@
 
     (progn
     (add-hook 'sage-shell-after-prompt-hook #'sage-shell-view-mode)
-    (setq sage-shell:use-prompt-toolkit t)
+    (setq sage-shell:use-prompt-toolkit nil)
     ;; Run SageMath by M-x run-sage instead of M-x sage-shell:run-sage
     (sage-shell:define-alias)
 
