@@ -36,10 +36,6 @@
                                         yasnippet
                                         ))
 
-
-
-
-
 (defun better-auto-completion/post-init-company-ycmd ()
     (company-ycmd-setup)
 
@@ -70,19 +66,11 @@
     (setq build-dir '"build")
     (setq-default helm-make-build-dir build-dir)
 
-    ;;Auto-Completion
-    (setq ycmd-dir (file-truename '"~/.ycmd/ycmd/ycmd/"))
-    (setq word-python "python")
+    (setq ycmd-startup-timeout 20)
 
-    (defun my-eval-string (string)
-      (car (read-from-string string)))
+    ;; (setq ycmd-extra-conf-whitelist '("~/*"))
 
-    (setq to-command (my-eval-string (concat "(\"" word-python "\" \"" ycmd-dir
-                                             "\")")))
-
-    (setq ycmd-extra-conf-whitelist '("*"))
-
-    (set-variable 'ycmd-server-command to-command)
+    (set-variable 'ycmd-server-command (list "python" "-u" (file-truename '"~/.ycmd/ycmd/ycmd/")))
 
     (set-variable 'ycmd-extra-conf-handler 'load)
     (setq ycmd-generate-command '"~/.ycmd/YCM-Generator/config_gen.py")
@@ -121,7 +109,5 @@
 (defun better-auto-completion/post-init-yasnippet ()
   (spacemacs/toggle-yasnippet-on)
   (add-to-list 'yas-snippet-dirs (expand-file-name "~/.spacemacs.d/snippets"))
-
-  (setq jonathan-sucks "yep")
   )
 ;;; packages.el ends here
