@@ -33,7 +33,7 @@
         writegood-mode
         writeroom-mode
         wordsmith-mode
-        synonyms
+        www-synonyms
         langtool
         (diatheke :location local)
         ))
@@ -59,8 +59,8 @@
 )
   )
 
-(defun writing/init-synonyms ()
-  (use-package synonyms
+(defun writing/init-www-synonyms ()
+  (use-package www-synonyms
   :init
   (setq synonyms-file ".spacemacs.d/private/resources/mthesaur.txt")
   (setq synonyms-cache-file ".spacemacs.d/private/resources/mthesaur.txt.cache")
