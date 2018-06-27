@@ -400,7 +400,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-show-transient-state-title t
 
    ;; If non-nil show the color guide hint for transient state keys. (default t)
-   dotspacemacs-show-transient-state-color-guide t
+   dotspacemacs-show-transient-state-color-guide nil
 
    ;; If non-nil unicode symbols are displayed in the mode line. (default t)
    dotspacemacs-mode-line-unicode-symbols t
@@ -536,11 +536,8 @@ you (should) place your code here."
 
   (setq remote-file-name-inhibit-cache nil)
   (setq tramp-default-method "ssh")
-  (setq vc-ignore-dir-regexp
-        (format "%s\\|%s"
-                vc-ignore-dir-regexp
-                tramp-file-name-regexp))
   (setq tramp-verbose 6)
+  (setq process-connection-type nil)
 
   ;;tag
   (setq persp-add-buffer-on-after-change-major-mode t)
@@ -586,6 +583,8 @@ you (should) place your code here."
 
 
   (setq helm-use-frame-when-more-than-two-windows 'nil)
+
+  (add-hook 'erc-mode-hook 'evil-force-normal-state)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
