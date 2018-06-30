@@ -556,16 +556,17 @@ you (should) place your code here."
 
   (setq persp-when-kill-switch-to-buffer-in-perspective nil)
 
+  (global-ycmd-mode 't)
   ;;Auto-complete language specifics
   (better-auto-completion/enable-ycmd-modes '(javascript-mode-hook
                                               python-mode-hook
                                               blue-mode-hook
+                                              csharp-mode
                                               c++-mode-hook
                                               c-mode-hook))
   ;;Auto-complete python specifics
-  ;(push 'company-ycmd company-backends-python-mode)
-  ;(delete 'company-anaconda company-backends-python-mode)
   (remove-hook 'python-mode-hook 'anaconda-mode)
+  (remove-hook 'csharp-mode-hook 'omnisharp-mode)
 
   (require 'org-notmuch)
   ;;Babel Language specifics
