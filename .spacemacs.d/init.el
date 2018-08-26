@@ -144,6 +144,7 @@ This function should only modify configuration layer settings."
                                       decide
                                       password-store
                                       hackernews
+                                      habitica
                                       )
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -568,11 +569,14 @@ you (should) place your code here."
   (remove-hook 'python-mode-hook 'anaconda-mode)
   (remove-hook 'csharp-mode-hook 'omnisharp-mode)
 
+
   (require 'org-notmuch)
   ;;Babel Language specifics
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((C . t)
                                  (emacs-lisp . t)
+                                 (dot . t)
+                                 (plantuml . t)
                                  (latex . t)
                                  (shell .t)
                                  (python . t)
