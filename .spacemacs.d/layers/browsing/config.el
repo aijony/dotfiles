@@ -1,10 +1,6 @@
-(setq browse-url-browser-function 'browse-url-firefox)
+(setq browse-url-browser-function 'browse-url-default-browser)
 
 (setq httpd-port '8082)
-
-
-
-
 
 ;; PDF tools
 ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
