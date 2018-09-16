@@ -102,6 +102,17 @@
                                       ("\\paragraph{%s}" . "\\paragraph*{%s}")
                                       ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+    ;; ** <<APA journals>>
+    (add-to-list 'org-latex-classes '("apa6"
+                                      "\\documentclass{apa6}
+                                      [NO-DEFAULT-PACKAGES]
+                                      [PACKAGES]
+                                      [EXTRA]"
+                                      ("\\section{%s}" . "\\section*{%s}")
+                                      ("\\subsection{%s}" . "\\subsection*{%s}")
+                                      ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
+                                      ("\\paragraph{%s}" . "\\paragraph*{%s}")
+                                      ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
     ))
 
 
@@ -185,8 +196,11 @@
    org-preview-latex-default-process 'imagemagick)
 
   ;; This is what makes bibtex work
-  (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
-                                "bibtex %b"
+  (setq org-latex-pdf-process '(
+                                "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
+                                "cp export/%b-blx.bib ."
+                                "bibtex export/%b"
+                                "rm -rf %b-blx.bib ."
                                 "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"
                                 "pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
 
